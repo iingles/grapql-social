@@ -79,6 +79,12 @@ app.use(morgan('combined', {
 //Cross Origin middleware
 app.use(cors())
 
+app.use((req, res, next) => {
+    if (req.method === 'OPTION') {
+        res.sendStatus(200)
+    }
+    next()
+})
 //application/json
 app.use(bodyParser.json());
  
@@ -105,7 +111,17 @@ app.use(
     '/graphql', 
     graphqlHttp({
         schema: bschema,
-        rootValue: bresolver
+        rootValue: bresolver,
+        graphiql: true,
+        formatError(err) {
+            if (!err.originalError) {
+                return err
+            }
+            const data = err.originalError.data
+            const message = err.message || 'An error occured'
+            const code = err.originalError.code || 500
+            return { message, status: code, data }
+        }
 }))
 
 app.use((error, req, res, next) => {

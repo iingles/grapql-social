@@ -4,33 +4,100 @@
             <header class="card-header">
                 <h1>Join Us.</h1>
             </header>
-            <form class="signup-form" method="POST">
+            <form class="signup-form"  @submit.prevent="signUpHandler" @keyup.enter="signUpHandler">
                 <div class="form-row">
                     <label for="firstName">First Name</label>
-                    <input type="text" name="firstName">
+                    <input
+                    v-model.lazy="userInput.firstName"
+                    type="text"
+                    name="firstName"
+                    >
                 </div>
                 <div class="form-row">
                     <label for="lastName">Last Name</label>
-                    <input type="text" name="lastName">
+                    <input v-model.lazy="userInput.lastName" type="text" name="lastName">
                 </div>
                 <div class="form-row">
                     <label for="email">Email</label>
-                    <input type="text" name="email">
+                    <input v-model.lazy="userInput.email" type="text" name="email">
                 </div>
                 <div class="form-row">
                     <label for="password">Password</label>
-                    <input type="password" name="password">
+                    <input v-model.lazy="userInput.password" type="password" name="password">
                 </div>
                 <div class="form-row">
                     <label for="redoPassword">Re-type Password</label>
-                    <input type="password" name="redoPassword">
+                    <input v-model.lazy="userInput.rePass" type="password" name="redoPassword">
                 </div>
-                <button type="submit" class="btn btn-green">Sign Up</button>
+                <button type="submit" class="btn btn-green"  @click="signUpHandler">Sign Up</button>
             </form>
         </div>
         <p>Already have an account?<router-link to="/login">&nbsp;Log in here.</router-link></p>
     </section>
 </template>
+
+<script>
+export default {
+  data: () => {
+    return {
+      userInput: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        rePass: ''
+      }
+    }
+  },
+  methods: {
+    signUpHandler (event) {
+      const vm = this
+      event.preventDefault()
+
+      const graphQuery = {
+        query: `
+            mutation {
+                createUser(userInput: {
+                    firstName: "${vm.userInput.firstName}",
+                    lastName: "${vm.userInput.lastName}",
+                    email: "${vm.userInput.email}",
+                    password: "${vm.userInput.password}"
+                }) {
+                    _id
+                    email
+                }
+            }
+        `
+      }
+      fetch('http://localhost:3000/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(graphQuery)
+      })
+        .then(res => {
+          return res.json()
+        })
+        .then(resData => {
+          if (resData.errors && resData.errors[0].status === 422) {
+            throw new Error(
+              'validation failed.'
+            )
+          }
+          if (resData.errors) {
+            console.log(resData.errors)
+            throw new Error('User creation failed.')
+          }
+          console.log(resData)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }
+}
+</script>
 
 <style scoped>
     .container {
