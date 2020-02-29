@@ -13,6 +13,11 @@ import NewPost from './posts/NewPost'
 export default {
   components: {
     NewPost
+  },
+  created: {
+    getAllPosts() {
+      
+    }
   }
 }
 </script>

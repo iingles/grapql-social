@@ -23,6 +23,9 @@ import graphqlHttp from 'express-graphql'
 import { bschema } from './graphql/schema'
 import { bresolver } from './graphql/resolvers'
 
+// Authentication middleware
+import { auth } from './middleware/auth'
+
 /*
     Importing morgan the old way because the ES6 way 
     gives an error; apparently this is an ongoing 
@@ -106,6 +109,9 @@ app.use('/images', express.static(path.join(__dirname, 'images')))
 var db = mongoose.connection;
 // Bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+// Use the authorization middleware before graphQL
+app.use(auth)
 
 app.use(
     '/graphql', 
