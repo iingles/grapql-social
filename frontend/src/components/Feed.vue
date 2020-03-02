@@ -15,8 +15,7 @@ export default {
     NewPost
   },
   created: {
-    getAllPosts() {
-      
+    getAllPosts () {
     }
   }
 }

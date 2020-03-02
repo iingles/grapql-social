@@ -96,6 +96,14 @@ export const bresolver = {
     }
   },
   createPost: async function ({ postInput }, req) {
+    // Check isAuth to see if the user is authenticated
+
+    if (!req.isAuth) {
+        const error = new Error('Not Authenticated')
+        error.code = 401
+        throw error
+    }
+
     const errors = []
     if (validator.isEmpty(postInput.content)) {
         errors.push({ message: 'No content in post' })
@@ -106,15 +114,29 @@ export const bresolver = {
         error.code = 422
         throw error
     }
-    // If input is valid, we can create a new post
+ 
+    // Get the post's creator
+    const user = await User.findById(req.userId)
+    
+    // If there is no user, something went wrong; throw an error
+    if (!user) {
+        const error = new Error('Invalid User')
+        error.code = 401
+        throw error
+    }
+    
+    // If we have an authenticated user and valid input, create a new post
     const post = new Post({
         content: postInput.content,
-        imageURL: postInput.imageURL
+        imageURL: postInput.imageURL,
+        creator: user
     })
 
     const createdPost = await post.save()
-
-    // Add post to user's posts
+    
+    // Push the new post to the creating user's posts
+    user.posts.push(createdPost)
+    
     return {
         ...createdPost._doc, 
         _id: createdPost._id.toString(), 
