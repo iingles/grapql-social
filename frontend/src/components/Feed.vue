@@ -23,7 +23,7 @@ export default {
     SinglePost
   },
   created: {
-    getAllPosts () {
+    getRelevantPosts () {
     }
   }
 }
