@@ -1,18 +1,26 @@
 <template>
     <section>
-        <header class="section-header">
-            Feed
-        </header>
-        <NewPost />
+      <SinglePost />
+        <!-- <template v-if="feedStack.length > 0">
+        </template>
+        <template v-else>
+          <h4>You don't have anything in your feed.</h4>
+        </template> -->
     </section>
 </template>
 
 <script>
-import NewPost from './posts/NewPost'
+
+import SinglePost from './posts/SinglePost'
 
 export default {
+  data: () => {
+    return {
+      feedStack: []
+    }
+  },
   components: {
-    NewPost
+    SinglePost
   },
   created: {
     getAllPosts () {

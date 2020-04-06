@@ -4,83 +4,12 @@
   </div>
 </template>
 
-<style>
-  html, body, div, span, applet, object, iframe,
-  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-  a, abbr, acronym, address, big, cite, code,
-  del, dfn, em, img, ins, kbd, q, s, samp,
-  small, strike, strong, sub, sup, tt, var,
-  b, u, i, center,
-  dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed,
-  figure, figcaption, footer, header, hgroup,
-  menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-  }
-  /* HTML5 display-role reset for older browsers */
-  article, aside, details, figcaption, figure,
-  footer, header, hgroup, menu, nav, section {
-    display: block;
-  }
-  body {
-    line-height: 1.5;
-  }
-  ol, ul {
-    list-style: none;
-  }
-  blockquote, q {
-    quotes: none;
-  }
-  blockquote:before, blockquote:after,
-  q:before, q:after {
-    content: '';
-    content: none;
-  }
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
+<style lang="less">
+  @twblue: #15202B;
+  @twgray: #3D5466;
 
-  html {
-    font-size: 62.5%;
+  .btn-primary {
+    background: @twblue;
+    color: #fff;
   }
-
-  body {
-    font-family: 'Open Sans';
-    font-size: 1.5rem;
-  }
-
-  .container {
-    display: flex;
-  }
-
-  .btn {
-    padding: 1rem 5rem;
-    text-transform: uppercase;
-    border-radius: 6px;
-    letter-spacing:.1rem;
-    font-weight:700;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  .btn-green {
-    background: #24E216;
-    color: white;
-  }
-
-  .btn-blue {
-    background: #00A9FF;
-    color: white;
-  }
-
 </style>

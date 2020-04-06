@@ -1,47 +1,107 @@
 <template>
-    <div class="container">
-        <div class="col 3-col">
-            <News />
-        </div>
-        <div class="col 3-col middle-col">
-            <Feed />
-        </div>
-        <div class="col 3-col">
-            <Recent />
-        </div>
+    <div>
+        <b-navbar fixed="top" fluid class="main-nav container-tw">
+            <b-container class="d-flex justify-content-center">
+                <b-row>
+                    <b-col col sm="12" md="12" lg="12">
+                        <b-form>
+                            <b-input-group size="sm" class="mb-2">
+                                <b-input-group-prepend is-text>
+                                    <b-icon icon="search"></b-icon>
+                                </b-input-group-prepend>
+                                <b-form-input type="search" placeholder="Search"></b-form-input>
+                            </b-input-group>
+                        </b-form>
+                    </b-col>
+                </b-row>
+            </b-container>
+        </b-navbar>
+        <b-container fluid class="container-tw pt-5 main-view">
+            <b-container>
+                <b-row>
+                   <b-col col sm="12" md="3" lg="2">
+                       <div class="menu">
+                           <h1>Menu</h1>
+                        </div>
+                   </b-col>
+                   <b-col col sm="12" md="6" lg="7" class="main-content">
+                       <b-card
+                       title="Write a new post"
+                       class="mb-1"
+                       >
+                        <b-form>
+                            <b-form-group
+                            label="What do you want to say?"
+                            >
+                                <b-form-textarea
+                                rows="3"
+                                max-rows="6"
+                                >
+                                </b-form-textarea>
+                            </b-form-group>
+                            <b-button pill variant="primary">Post</b-button>
+                        </b-form>
+                       </b-card>
+                       <Feed />
+                   </b-col>
+                   <b-col col sm="12" md="6" lg="3">
+                       <div class="side-content">
+                           <h4>Side Content</h4>
+                       </div>
+                   </b-col>
+                </b-row>
+            </b-container>
+        </b-container>
     </div>
 </template>
 
 <script>
-import News from '../../components/News'
+// import News from '../../components/News'
 import Feed from '../../components/Feed'
-import Recent from '../../components/Recent'
+// import Recent from '../../components/Recent'
 
 export default {
   components: {
-    News,
-    Feed,
-    Recent
+    // News,
+    Feed
+    // Recent
   }
 }
 </script>
 
-<style scoped>
-    .container {
-        flex-direction: column;
+<style lang="less" scoped>
+    @twgray: #CCD6DD;
+    .menu {
+        position: fixed;
+    }
+    .main-nav {
+        background: #fff;
     }
 
-    @media screen and (min-width: 1000px) {
-        .container {
-            flex-direction: row;
-            justify-content: space-around;
-        }
+    .container-tw {
+        border-bottom: 1px solid @twgray;
+    }
 
-        .middle-col {
-            width: 33%;
-            border-left: 1px solid #ccc;
-            border-right: 1px solid #ccc;
-        }
+    .container {
+        max-width: 990px;
+    }
+
+    .main-view {
+        min-height: 100vh;
+    }
+
+    .main-content {
+        min-height: 100vh;
+        border-left: 1px solid @twgray;
+        border-right: 1px solid @twgray;
+        padding: 20px;
+    }
+
+    .side-content {
+        border: 1px solid @twgray;
+        border-radius: 10px;
+        margin: 20px 10px;
+        padding: 20px;
     }
 
 </style>
