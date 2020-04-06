@@ -19,12 +19,12 @@
         <b-container fluid class="container-tw pt-5 main-view">
             <b-container>
                 <b-row>
-                   <b-col col sm="12" md="3" lg="2">
+                   <b-col cols="12" sm="1" md="1" lg="1">
                        <div class="menu">
-                           <h1>Menu</h1>
+                           <MainMenu />
                         </div>
                    </b-col>
-                   <b-col col sm="12" md="6" lg="7" class="main-content">
+                   <b-col col sm="12" md="11" lg="7" class="main-content">
                        <b-card
                        title="Write a new post"
                        class="mb-1"
@@ -44,7 +44,7 @@
                        </b-card>
                        <Feed />
                    </b-col>
-                   <b-col col sm="12" md="6" lg="3">
+                   <b-col col sm="12" md="12" lg="3">
                        <div class="side-content">
                            <h4>Side Content</h4>
                        </div>
@@ -58,12 +58,14 @@
 <script>
 // import News from '../../components/News'
 import Feed from '../../components/Feed'
+import MainMenu from '../../components/shared/MainMenu'
 // import Recent from '../../components/Recent'
 
 export default {
   components: {
     // News,
-    Feed
+    Feed,
+    MainMenu
     // Recent
   }
 }
@@ -73,7 +75,12 @@ export default {
     @twgray: #CCD6DD;
     .menu {
         position: fixed;
+        @media screen and (max-width: 800px) {
+
+            display: none;
+        }
     }
+
     .main-nav {
         background: #fff;
     }
@@ -83,7 +90,7 @@ export default {
     }
 
     .container {
-        max-width: 990px;
+        max-width: 960px;
     }
 
     .main-view {
