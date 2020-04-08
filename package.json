@@ -3,6 +3,6 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "build-client": "npm run build --prefix frontend"
+        "build-client": "npm i && npm run build --prefix frontend"
     }
 }
