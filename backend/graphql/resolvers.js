@@ -6,7 +6,14 @@ import { User } from '../models/User'
 import { Post } from '../models/Post'
 
 export const bresolver = {
-  createUser: async function ({ userInput }, req) {
+
+    getUser: async function ({ _id }, req) {
+        const user = await User.findById(_id)
+
+        return user
+    },
+
+    createUser: async function ({ userInput }, req) {
 
     // Validation
 
@@ -98,11 +105,12 @@ export const bresolver = {
   createPost: async function ({ postInput }, req) {
     // Check isAuth to see if the user is authenticated
 
-    if (!req.isAuth) {
-        const error = new Error('Not Authenticated')
-        error.code = 401
-        throw error
-    }
+    const creatorId = postInput.creatorId 
+    // if (!req.isAuth) {
+    //     const error = new Error('Not Authenticated')
+    //     error.code = 401
+    //     throw error
+    // }
 
     const errors = []
     if (validator.isEmpty(postInput.content)) {
@@ -116,7 +124,7 @@ export const bresolver = {
     }
  
     // Get the post's creator
-    const user = await User.findById(req.userId)
+    const user = await User.findById(creatorId)
     
     // If there is no user, something went wrong; throw an error
     if (!user) {
@@ -128,7 +136,7 @@ export const bresolver = {
     // If we have an authenticated user and valid input, create a new post
     const post = new Post({
         content: postInput.content,
-        imageURL: postInput.imageURL,
+        // imageURL: postInput.imageURL,
         creator: user
     })
 
@@ -142,6 +150,22 @@ export const bresolver = {
         _id: createdPost._id.toString(), 
         createdAt: createdPost.createdAt.toISOString(),
         updatedAt: createdPost.updatedAt.toISOString()
-    }
+    }    
+    },
+    posts: async function (args, req) {
+        const totalPosts = await Post.find().countDocuments()
+        const posts = await Post
+        .find()
+        .sort({ createdAt: -1 })
+            .populate('creator')
+        
+        return {
+            posts: posts.map(p => {
+                return {
+                    ...p._doc, id: p._id.toString(), createdAt: p.createdAt.toISOString(), updatedAt: p.updatedAt.toISOString()
+                }
+            }),
+            totalPosts: totalPosts
+        }
   }
 }

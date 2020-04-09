@@ -24,6 +24,11 @@ export const bschema = buildSchema(`
         userId: String!
     }
 
+    type PostData {
+        posts: [Post!]!
+        totalPosts: Int!
+    }
+
     input UserInputData {
         email: String!
         firstName: String!
@@ -33,11 +38,13 @@ export const bschema = buildSchema(`
 
     input PostInputData {
         content: String!
-        imageURL: String!
+        creatorId: String!
     }
 
     type RootQuery {
         login(email: String!, password: String!): AuthData!
+        getUser(_id: String!): User!
+        posts: PostData!
     }
     
     type RootMutation {

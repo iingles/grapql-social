@@ -36,7 +36,7 @@ const morgan = require('morgan')
 //App Constants
 const app = express()
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-rxesh.mongodb.net/${process.env.MONGO_DEFAULT_DB}`
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 4000
 
 //For morgan -- logging to a file instead of the console
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'),
@@ -111,7 +111,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // Use the authorization middleware before graphQL
-app.use(auth)
+// app.use(auth)
 
 app.use(
     '/graphql', 
@@ -119,7 +119,7 @@ app.use(
         schema: bschema,
         rootValue: bresolver,
         graphiql: true,
-        formatError(err) {
+        customFormatErrorFn(err) {
             if (!err.originalError) {
                 return err
             }

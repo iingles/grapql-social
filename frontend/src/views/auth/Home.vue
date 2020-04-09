@@ -25,23 +25,7 @@
                         </div>
                    </b-col>
                    <b-col col sm="12" md="11" lg="7" class="main-content">
-                       <b-card
-                       title="Write a new post"
-                       class="mb-1"
-                       >
-                        <b-form>
-                            <b-form-group
-                            label="What do you want to say?"
-                            >
-                                <b-form-textarea
-                                rows="3"
-                                max-rows="6"
-                                >
-                                </b-form-textarea>
-                            </b-form-group>
-                            <b-button pill variant="primary">Post</b-button>
-                        </b-form>
-                       </b-card>
+                       <NewPost />
                        <Feed />
                    </b-col>
                    <b-col col sm="12" md="12" lg="3">
@@ -57,13 +41,14 @@
 
 <script>
 // import News from '../../components/News'
+import NewPost from '../../components/posts/NewPost'
 import Feed from '../../components/Feed'
 import MainMenu from '../../components/shared/MainMenu'
 // import Recent from '../../components/Recent'
 
 export default {
   components: {
-    // News,
+    NewPost,
     Feed,
     MainMenu
     // Recent
