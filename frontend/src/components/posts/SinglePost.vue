@@ -1,5 +1,5 @@
 <template>
-    <b-card :title="`${post.creator.firstName} ${post.creator.lastName}`" :sub-title="post.createdAt">
+    <b-card class="mb-1" :title="`${post.creator.firstName} ${post.creator.lastName}`" :sub-title="post.createdAt">
         <b-avatar href="#" class="align-top"></b-avatar>
         <b-card-body>
             {{post.content}}

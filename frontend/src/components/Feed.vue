@@ -27,6 +27,7 @@ export default {
   components: {
     SinglePost
   },
+  // On creation, load in all posts in the user's feed stack
   created () {
     const vm = this
     const graphQLQuery = {

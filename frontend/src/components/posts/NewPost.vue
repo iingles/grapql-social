@@ -3,7 +3,7 @@
     title="Write a new post"
     class="mb-1"
     >
-        <b-form>
+        <b-form class="d-flex flex-column">
             <b-form-group
             label="What do you want to say?"
             >
@@ -14,7 +14,7 @@
                 >
                 </b-form-textarea>
             </b-form-group>
-            <b-button @click="createPost(newPostData)" pill variant="primary">Post</b-button>
+            <b-button class="align-self-end" @click="createPost(newPostData)" pill variant="primary">Post</b-button>
         </b-form>
     </b-card>
 </template>
