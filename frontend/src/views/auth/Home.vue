@@ -58,11 +58,12 @@ export default {
 
 <style lang="less" scoped>
     @twgray: #CCD6DD;
+
     .menu {
         position: fixed;
-        @media screen and (max-width: 800px) {
-
-            display: none;
+        display: none;
+        @media screen and (min-width: 992px) {
+            display: inline-block;
         }
     }
 
@@ -84,9 +85,14 @@ export default {
 
     .main-content {
         min-height: 100vh;
-        border-left: 1px solid @twgray;
-        border-right: 1px solid @twgray;
-        padding: 20px;
+        margin: 0;
+        padding: 0;
+
+        @media screen and (min-width: 992px) {
+            border-left: 1px solid @twgray;
+            border-right: 1px solid @twgray;
+            padding: 20px;
+        }
     }
 
     .side-content {
