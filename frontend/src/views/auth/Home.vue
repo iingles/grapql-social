@@ -25,12 +25,19 @@
                         </div>
                    </b-col>
                    <b-col col sm="12" md="11" lg="7" class="main-content">
-                       <NewPost />
-                       <Feed />
+                       <NewPost
+                        :token="token"
+                        :userId="userId"
+                       />
+                       <Feed
+                        :token="token"
+                        :userId="userId"
+                       />
                    </b-col>
                    <b-col col sm="12" md="12" lg="3">
                        <div class="side-content">
                            <h4>Side Content</h4>
+                               {{ this.$store.getters.user }}
                        </div>
                    </b-col>
                 </b-row>
@@ -47,6 +54,10 @@ import MainMenu from '../../components/shared/MainMenu'
 // import Recent from '../../components/Recent'
 
 export default {
+  props: {
+    token: String,
+    userId: String
+  },
   components: {
     NewPost,
     Feed,

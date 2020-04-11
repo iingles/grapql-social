@@ -55,7 +55,9 @@ export default {
     Share
   },
   props: {
-    post: Object
+    post: Object,
+    token: String,
+    userId: String
   }
 }
 </script>

@@ -110,11 +110,11 @@ export const bresolver = {
     // Check isAuth to see if the user is authenticated
 
     const creatorId = postInput.creatorId 
-    // if (!req.isAuth) {
-    //     const error = new Error('Not Authenticated')
-    //     error.code = 401
-    //     throw error
-    // }
+    if (!req.isAuth) {
+        const error = new Error('Not Authenticated')
+        error.code = 401
+        throw error
+    }
 
     const errors = []
     if (validator.isEmpty(postInput.content)) {
@@ -160,11 +160,11 @@ export const bresolver = {
   
     posts: async function ({ page }, req) {
 
-        // if (!req.isAuth) {
-        //     const error = new Error('Not Authenticated')
-        //     error.code = 401
-        //     throw error
-        // }
+        if (!req.isAuth) {
+            const error = new Error('Not Authenticated')
+            error.code = 401
+            throw error
+        }
 
         // Pagination
 

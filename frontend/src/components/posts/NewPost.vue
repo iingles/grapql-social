@@ -21,6 +21,10 @@
 
 <script>
 export default {
+  props: {
+    token: String,
+    userId: String
+  },
   data: () => {
     return {
       newPostData: {
@@ -59,6 +63,7 @@ export default {
         method: 'POST',
         body: JSON.stringify(graphqlQuery),
         headers: {
+          Authorization: `Bearer ${vm.token}`,
           'Content-Type': 'application/json'
         }
       })

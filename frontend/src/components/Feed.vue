@@ -3,6 +3,8 @@
       <div v-for="post in posts" :key="post._id">
         <SinglePost
           :post="post"
+          :token="token"
+          :userId="userId"
         />
       </div>
         <!-- <template v-if="feedStack.length > 0">
@@ -18,6 +20,10 @@
 import SinglePost from './posts/SinglePost'
 
 export default {
+  props: {
+    token: String,
+    userId: String
+  },
   data: () => {
     return {
       feedStack: [],
@@ -69,7 +75,7 @@ export default {
     fetch('http://localhost:4000/graphql', {
       method: 'POST',
       headers: {
-        Authorization: '',
+        Authorization: `Bearer ${vm.token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(graphQLQuery)

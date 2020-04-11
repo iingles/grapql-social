@@ -112,8 +112,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // Use the authorization middleware before graphQL
 
-
-// app.use(auth)
+app.use(auth)
 
 // Image uploads
 app.put('/post-image', (req, res, next) => {

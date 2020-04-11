@@ -86,6 +86,15 @@ export default {
           localStorage.setItem('token', resData.data.login.token)
           localStorage.setItem('userId', resData.data.login.userId)
 
+          // Set the local user state (Is this secure or is there a better way to do it?)
+          this.$store.dispatch('setAuth', {
+            authData: {
+              auth: true,
+              token: localStorage.getItem('token'),
+              id: localStorage.getItem('userId')
+            }
+          })
+
           // Redirect to home
           this.$router.push('Home')
         })
