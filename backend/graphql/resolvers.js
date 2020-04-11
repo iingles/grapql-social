@@ -154,7 +154,7 @@ export const bresolver = {
         }    
     },
   
-    posts: async function (args, req) {
+    posts: async function ({ page }, req) {
 
         // if (!req.isAuth) {
         //     const error = new Error('Not Authenticated')
@@ -162,10 +162,20 @@ export const bresolver = {
         //     throw error
         // }
 
+        // Pagination
+
+        if (!page) {
+            page = 1
+        }
+
+        const perPage = 2 //hardcode this for now
+
         const totalPosts = await Post.find().countDocuments()
         const posts = await Post
         .find()
-        .sort({ createdAt: -1 })
+            .sort({ createdAt: -1 })
+            .skip((page - 1) * perPage)
+            .limit(perPage)
         .populate('creator')
         
         return {

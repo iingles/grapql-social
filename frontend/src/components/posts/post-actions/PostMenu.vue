@@ -22,3 +22,9 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+    .btn-link {
+        color: #CCD6DD;
+    }
+</style>

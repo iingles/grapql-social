@@ -30,10 +30,27 @@ export default {
   // On creation, load in all posts in the user's feed stack
   created () {
     const vm = this
+    let page = 1
+    const direction = 0
+
+    if (!direction) {
+      vm.posts = []
+    }
+
+    if (direction === 'next') {
+      page++
+      // this.setState({ postPage: page})
+    }
+
+    if (direction === 'previous') {
+      page--
+      // this.setState({ postPage: page})
+    }
+
     const graphQLQuery = {
       query: `
       {
-        posts {
+        posts(page: ${page}) {
           posts {
             _id
             content 

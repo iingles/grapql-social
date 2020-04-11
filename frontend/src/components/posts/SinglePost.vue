@@ -77,6 +77,10 @@ export default {
         }
     }
 
+    .dropdown .btn {
+        color: #CCD6DD;
+    }
+
      .card-footer {
         background-color: #fff;
 

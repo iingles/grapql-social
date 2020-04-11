@@ -44,7 +44,7 @@ export const bschema = buildSchema(`
     type RootQuery {
         login(email: String!, password: String!): AuthData!
         getUser(_id: String!): User!
-        posts: PostData!
+        posts(page: Int): PostData!
     }
     
     type RootMutation {
