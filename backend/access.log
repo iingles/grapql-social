@@ -533,3 +533,5 @@
 ::1 - - [10/Apr/2020:03:06:24 +0000] "POST /graphql HTTP/1.1" 200 - "http://localhost:8080/home" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
 ::1 - - [10/Apr/2020:03:07:36 +0000] "OPTIONS /graphql HTTP/1.1" 204 0 "http://localhost:8080/home" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
 ::1 - - [10/Apr/2020:03:07:36 +0000] "POST /graphql HTTP/1.1" 200 - "http://localhost:8080/home" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
+::1 - - [11/Apr/2020:18:05:06 +0000] "OPTIONS /graphql HTTP/1.1" 204 0 "http://localhost:8080/signup" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
+::1 - - [11/Apr/2020:18:05:07 +0000] "POST /graphql HTTP/1.1" 200 90 "http://localhost:8080/signup" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"

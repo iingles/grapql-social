@@ -1,5 +1,5 @@
 <template>
-    <b-container class="container mt-5 d-flex justify-content-center align-content-center">
+    <b-container class="d-flex justify-content-center">
       <div>
         <b-card
         title="Sign Up"
@@ -35,20 +35,20 @@
               label="Choose a Password"
               label-for="password"
               >
-                  <input v-model.lazy="userInput.password" type="password" name="password">
+                <input v-model.lazy="userInput.password" type="password" name="password">
               </b-form-group>
               <b-form-group
               id="input-group-5"
               label="Verify Password"
               label-for="redopassword"
               >
-                  <input v-model.lazy="userInput.rePass" type="password" name="redoPassword">
+                <input v-model.lazy="userInput.rePass" type="password" name="redoPassword">
               </b-form-group>
-              <b-button pill variant="outline-primary">Sign Up</b-button>
-          </b-form>
-        </b-card>
-        <p>Already have an account?<router-link to="/login">&nbsp;Log in here.</router-link></p>
-      </div>
+              <b-button pill type="submit" variant="outline-primary">Sign Up</b-button>
+            </b-form>
+          </b-card>
+          <p>Already have an account?<router-link to="/login">&nbsp;Log in here.</router-link></p>
+        </div>
     </b-container>
 </template>
 
@@ -85,7 +85,7 @@ export default {
             }
         `
       }
-      fetch('http://localhost:3000/graphql', {
+      fetch('http://localhost:4000/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -105,7 +105,7 @@ export default {
             console.log(resData.errors)
             throw new Error('User creation failed.')
           }
-          console.log(resData)
+          // console.log(resData)
         })
         .catch(err => {
           console.log(err)
@@ -115,6 +115,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 
 </style>
