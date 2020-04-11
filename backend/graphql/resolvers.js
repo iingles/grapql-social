@@ -143,15 +143,17 @@ export const bresolver = {
     const createdPost = await post.save()
     
     // Push the new post to the creating user's posts
-    user.posts.push(createdPost)
+      user.posts.push(createdPost)
+      await user.save()
     
-    return {
-        ...createdPost._doc, 
-        _id: createdPost._id.toString(), 
-        createdAt: createdPost.createdAt.toISOString(),
-        updatedAt: createdPost.updatedAt.toISOString()
-    }    
+        return {
+            ...createdPost._doc, 
+            _id: createdPost._id.toString(), 
+            createdAt: createdPost.createdAt.toISOString(),
+            updatedAt: createdPost.updatedAt.toISOString()
+        }    
     },
+  
     posts: async function (args, req) {
         const totalPosts = await Post.find().countDocuments()
         const posts = await Post
