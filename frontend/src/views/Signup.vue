@@ -2,7 +2,7 @@
     <b-container class="container mt-5 d-flex justify-content-center align-content-center">
       <div>
         <b-card
-        title="Login"
+        title="Sign Up"
         >
           <b-form @submit.prevent="signUpHandler" @keyup.enter="signUpHandler">
               <b-form-group
@@ -17,22 +17,31 @@
                   >
               </b-form-group>
               <b-form-group
-              id="input-group-1"
-              label="First Name"
-              label-for="firstname"
+              id="input-group-2"
+              label="Last Name"
+              label-for="lastName"
               >
                 <input v-model.lazy="userInput.lastName" type="text" name="lastName">
               </b-form-group>
-              <b-form-group>
-                  <label for="email">Email</label>
-                  <input v-model.lazy="userInput.email" type="text" name="email">
+              <b-form-group
+              id="input-group-3"
+              label="Email"
+              label-for="email"
+              >
+                <input v-model.lazy="userInput.email" type="text" name="email">
               </b-form-group>
-              <b-form-group>
-                  <label for="password">Password</label>
+              <b-form-group
+              id="input-group-4"
+              label="Choose a Password"
+              label-for="password"
+              >
                   <input v-model.lazy="userInput.password" type="password" name="password">
               </b-form-group>
-              <b-form-group>
-                  <label for="redoPassword">Re-type Password</label>
+              <b-form-group
+              id="input-group-5"
+              label="Verify Password"
+              label-for="redopassword"
+              >
                   <input v-model.lazy="userInput.rePass" type="password" name="redoPassword">
               </b-form-group>
               <b-button pill variant="outline-primary">Sign Up</b-button>
