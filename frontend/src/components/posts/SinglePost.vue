@@ -4,11 +4,11 @@
             <b-col cols="2">
                 <b-avatar variant="info" :text="post.creator.firstName[0]" href="#"></b-avatar>
             </b-col>
-            <b-col cols="9" class="d-flex mt-0 mb-0 ">
+            <b-col cols="8" class="d-flex mt-0 mb-0 ">
                 <h5 class="pb-0 mb-0">{{ `${post.creator.firstName} ${post.creator.lastName}` }}</h5>
                 <span class="date-time pb-0 mb-0 ml-3">{{ post.createdAt }}</span>
             </b-col>
-            <b-col cols="1">
+            <b-col cols="2">
                 <PostMenu />
             </b-col>
         </b-row>
