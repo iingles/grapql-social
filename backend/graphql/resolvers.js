@@ -172,7 +172,7 @@ export const bresolver = {
             page = 1
         }
 
-        const perPage = 2 //hardcode this for now
+        const perPage = 10 //hardcode this for now
 
         const totalPosts = await Post.find().countDocuments()
         const posts = await Post

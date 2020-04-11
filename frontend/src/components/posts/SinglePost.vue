@@ -9,7 +9,11 @@
                 <span class="date-time pb-0 mb-0 ml-3">{{ post.createdAt }}</span>
             </b-col>
             <b-col cols="2">
-                <PostMenu />
+                <PostMenu
+                 :userId="userId"
+                 :token="token"
+                 :creatorId="post.creator._id"
+                />
             </b-col>
         </b-row>
         <b-row>
@@ -24,15 +28,23 @@
         <b-card-footer class="d-flex pt-2 pb-1 justify-content-around">
             <Reply
             :post="post"
+            :userId="userId"
+            :token="token"
             />
             <Like
             :post="post"
+            :userId="userId"
+            :token="token"
             />
             <Repost
             :post="post"
+            :userId="userId"
+            :token="token"
             />
             <Share
             :post="post"
+            :userId="userId"
+            :token="token"
             />
         </b-card-footer>
     </b-card>

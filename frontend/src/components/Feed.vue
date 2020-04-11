@@ -5,7 +5,7 @@
           :post="post"
           :token="token"
           :userId="userId"
-        />
+      />
       </div>
         <!-- <template v-if="feedStack.length > 0">
         </template>
@@ -61,6 +61,7 @@ export default {
             _id
             content 
             creator {
+              _id
               firstName
               lastName
             }

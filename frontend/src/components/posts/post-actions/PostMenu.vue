@@ -14,12 +14,27 @@
 
 <script>
 export default {
+  props: {
+    token: String,
+    userId: String,
+    creatorId: String
+  },
   data: () => {
     return {
       // set this to true for now.
       currentUser: true
     }
+  },
+  created () {
+    const vm = this
+
+    if (vm.creatorId === vm.userId) {
+      vm.currentUser = true
+    } else {
+      vm.currentUser = false
+    }
   }
+
 }
 </script>
 
