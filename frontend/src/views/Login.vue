@@ -4,7 +4,9 @@
         <b-card
         title="Login"
         >
-          <b-form method="POST">
+          <b-form @submit.prevent="loginHandler" @keyup.enter="loginHandler">
+              <b-button @click="setDemoUser('demouser@example.com', 'iiiiiiiiii1')">Log in as a demo user</b-button>
+
               <b-form-group
               id="input-group-1"
               label="Email"
@@ -20,7 +22,7 @@
                   <input id="password" type="password" v-model="authData.password">
               </b-form-group>
               <b-button variant="link" href="/account-recovery">Forgot Password?</b-button>
-              <b-button pill variant="outline-primary">log in</b-button>
+              <b-button type="submit" pill variant="outline-primary">log in</b-button>
           </b-form>
         </b-card>
         <p>Need an account?<router-link to="/signup">&nbsp;Sign up here.</router-link></p>
@@ -38,6 +40,11 @@ export default {
       }
     }
   },
+  beforeRouteEnter (to, from, next) {
+    // If there is a token, redirect to home.  Should modify this later to check for token expiry.
+    if (localStorage.getItem('token')) next('/home')
+    next()
+  },
   methods: {
     loginHandler (event) {
       const vm = this
@@ -52,7 +59,9 @@ export default {
         }`
       }
 
-      fetch('http://localhost:3000/graphql', {
+      // Set the authloading state here
+
+      fetch('http://localhost:4000/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -72,12 +81,22 @@ export default {
           }
 
           console.log(resData)
+
+          // Set the token in localstorage (for now, have to learn how to do this better)
           localStorage.setItem('token', resData.data.login.token)
           localStorage.setItem('userId', resData.data.login.userId)
+
+          // Redirect to home
+          this.$router.push('Home')
         })
         .catch(err => {
           console.log(err)
         })
+    },
+    setDemoUser (email, password) {
+      const vm = this
+      vm.authData.email = email
+      vm.authData.password = password
     }
   }
 }

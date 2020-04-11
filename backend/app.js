@@ -111,7 +111,27 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // Use the authorization middleware before graphQL
+
+
 // app.use(auth)
+
+// Image uploads
+app.put('/post-image', (req, res, next) => {
+    if (!req.file) {
+        return res.status(200).json({ message: 'No file provided' })
+    }
+    if (req.body.oldPath) {
+        // Clear out the old image
+        clearImage(req.body.oldPath)
+    }
+
+    return res
+        .status(201)
+        .json({
+            message: 'File stored.',
+            filePath: req.file.path
+    })
+})
 
 app.use(
     '/graphql', 
@@ -150,3 +170,8 @@ mongoose
 .catch(err => {
     console.log(err)
 })
+
+const clearImage = filePath => {
+    filepath = path.join(__dirname, '..', filePath)
+    fs.unlink(filePath), err => console.log(err)
+}

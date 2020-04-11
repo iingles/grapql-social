@@ -6,9 +6,24 @@
         <li><b-nav-item><b-icon icon="person" class="mr-2"></b-icon></b-nav-item></li>
         <li><b-nav-item><b-icon icon="gear" class="mr-2"></b-icon></b-nav-item></li>
         <li><b-nav-item><b-icon icon="question-circle" class="mr-2"></b-icon></b-nav-item></li>
-        <li><b-nav-item><b-icon icon="box-arrow-right" class="mr-2"></b-icon></b-nav-item></li>
+        <li><b-nav-item @click="logout()"><b-icon icon="box-arrow-right" class="mr-2"></b-icon></b-nav-item></li>
     </ul>
 </template>
+
+<script>
+export default {
+  methods: {
+    logout () {
+      // Add a logout verification modal
+
+      localStorage.removeItem('token')
+      localStorage.removeItem('userId')
+
+      this.$router.push('Login')
+    }
+  }
+}
+</script>
 
 <style lang="less" scoped>
     ul {

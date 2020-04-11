@@ -65,6 +65,11 @@ export default {
       }
     }
   },
+  beforeRouteEnter (to, from, next) {
+    // If there is a token, redirect to home.  Should modify this later to check for token expiry.
+    if (localStorage.getItem('token')) next('/home')
+    next()
+  },
   methods: {
     signUpHandler (event) {
       const vm = this
@@ -98,14 +103,16 @@ export default {
         .then(resData => {
           if (resData.errors && resData.errors[0].status === 422) {
             throw new Error(
-              'validation failed.'
+              "validation failed.  Make sure that email address isn't used yet!"
             )
           }
           if (resData.errors) {
             console.log(resData.errors)
             throw new Error('User creation failed.')
           }
-          // console.log(resData)
+
+          // If everything was successful, redirect the user to Login
+          vm.$router.push('Login')
         })
         .catch(err => {
           console.log(err)

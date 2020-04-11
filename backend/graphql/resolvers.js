@@ -75,6 +75,7 @@ export const bresolver = {
   },
   login: async function ({ email, password }) {
     const user = await User.findOne({ email: email })
+      
     if (!user) {
         const error = new Error('User not found')
         error.code = 401
@@ -89,19 +90,22 @@ export const bresolver = {
     }
     
     const token = jwt.sign({
-        userId: user._id.toString(),
-        email: user.email
-    }, 
-    'somesupersecretstringcheckoutthedocsfordoingthisright',
-    {
-        expiresIn: '1h'
-    }
+            userId: user._id.toString(),
+            email: user.email
+        },
+            
+        'somesupersecretstringcheckoutthedocsfordoingthisright',
+        {
+            expiresIn: '1h'
+        }
     )
+    
     return { 
         token: token, 
         userId: user._id.toString()
     }
   },
+  
   createPost: async function ({ postInput }, req) {
     // Check isAuth to see if the user is authenticated
 

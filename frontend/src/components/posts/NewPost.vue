@@ -42,6 +42,7 @@ export default {
       const formData = new FormData()
       formData.append('creator', vm.newPostData.creator)
       formData.append('content', vm.newPostData.content)
+      formData.append('image', vm.newPostData.image)
 
       const graphqlQuery = {
         query: `

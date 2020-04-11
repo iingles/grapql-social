@@ -25,6 +25,9 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
+    meta: {
+      auth: true
+    },
     component: () => import(/* webpackChunkName: "Home" */ '../views/auth/Home.vue')
   }
 ]
@@ -33,6 +36,23 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+// Logic for "auth" routes
+
+router.beforeEach((to, from, next) => {
+  // Check to see if the route requires the user to be authenticated
+  if (to.matched.some(route => route.meta.auth)) {
+    // If there is no token, redirect to login
+    if (!localStorage.getItem('token')) {
+      next({
+        path: '/login',
+        params: { nextUrl: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else { next() }
 })
 
 export default router
