@@ -18,15 +18,20 @@ export default new Vuex.Store({
   },
   mutations: {
     setAuth (state, userAuth) {
-      state.user.auth = userAuth.auth
-      state.user.token = userAuth.token
-      state.user.id = userAuth.id
+      state.user = userAuth
+      console.log(state.user)
+    },
+    removeAuth (state, userAuth) {
+      state.user = {
+        auth: false,
+        token: '',
+        id: ''
+      }
     }
   },
   actions: {
     setAuth ({ commit }, authData) {
       commit('setAuth', authData)
-      console.log(authData)
     }
   },
   modules: {

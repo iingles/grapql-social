@@ -1,12 +1,12 @@
 <template>
     <ul>
-        <li><b-nav-item><b-icon icon="house-door" class="mr-2"></b-icon></b-nav-item></li>
-        <li><b-nav-item><b-icon icon="bell" class="mr-2"></b-icon></b-nav-item></li>
-        <li><b-nav-item><b-icon icon="envelope" class="mr-2"></b-icon></b-nav-item></li>
-        <li><b-nav-item><b-icon icon="person" class="mr-2"></b-icon></b-nav-item></li>
-        <li><b-nav-item><b-icon icon="gear" class="mr-2"></b-icon></b-nav-item></li>
-        <li><b-nav-item><b-icon icon="question-circle" class="mr-2"></b-icon></b-nav-item></li>
-        <li><b-nav-item @click="logout()"><b-icon icon="box-arrow-right" class="mr-2"></b-icon></b-nav-item></li>
+        <li><b-nav-item><b-icon icon="house-door" class="mr-2"></b-icon><span>Home</span></b-nav-item></li>
+        <li><b-nav-item><b-icon icon="bell" class="mr-2"></b-icon>Notifications</b-nav-item></li>
+        <li><b-nav-item><b-icon icon="envelope" class="mr-2"></b-icon>Messages</b-nav-item></li>
+        <li><b-nav-item><b-icon icon="person" class="mr-2"></b-icon>Profile</b-nav-item></li>
+        <li><b-nav-item><b-icon icon="gear" class="mr-2"></b-icon>Settings</b-nav-item></li>
+        <li><b-nav-item><b-icon icon="question-circle" class="mr-2"></b-icon>Help</b-nav-item></li>
+        <li><b-nav-item @click="logout()"><b-icon icon="box-arrow-right" class="mr-2"></b-icon>Logout</b-nav-item></li>
     </ul>
 </template>
 

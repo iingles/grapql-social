@@ -34,10 +34,10 @@
                         :userId="userId"
                        />
                    </b-col>
-                   <b-col col sm="12" md="12" lg="3">
+                   <b-col col sm="12" md="12" lg="4">
                        <div class="side-content">
-                           <h4>Side Content</h4>
-                               {{ this.$store.getters.user }}
+                           <p>Powered by <a href="https://newsapi.org/">NewsAPI</a></p>
+                           <News />
                        </div>
                    </b-col>
                 </b-row>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-// import News from '../../components/News'
+import News from './News'
 import NewPost from '../../components/posts/NewPost'
 import Feed from '../../components/Feed'
 import MainMenu from '../../components/shared/MainMenu'
@@ -61,8 +61,8 @@ export default {
   components: {
     NewPost,
     Feed,
-    MainMenu
-    // Recent
+    MainMenu,
+    News
   }
 }
 </script>

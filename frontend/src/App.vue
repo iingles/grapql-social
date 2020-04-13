@@ -1,9 +1,14 @@
 <template>
   <div id="app">
     <router-view
-    :token="token"
-    :userId="userId"
+      :token="token"
+      :userId="userId"
     />
+    <!-- <router-view
+    :token="this.$store.getters.user.token"
+    :userId="this.$store.getters.user.userId"
+    :auth="this.$store.getters.user.auth"
+    /> -->
   </div>
 </template>
 
