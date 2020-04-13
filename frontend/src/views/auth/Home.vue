@@ -2,9 +2,9 @@
     <div>
         <b-navbar fixed="top" fluid class="main-nav container-tw">
             <b-container class="d-flex justify-content-center">
-                <b-row>
-                    <b-col col sm="12" md="12" lg="12">
-                        <b-form>
+                <b-row class="d-flex">
+                    <b-col cols="12" sm="10" md="10" lg="12">
+                        <b-form >
                             <b-input-group size="sm" class="mb-2">
                                 <b-input-group-prepend is-text>
                                     <b-icon icon="search"></b-icon>
@@ -13,18 +13,19 @@
                             </b-input-group>
                         </b-form>
                     </b-col>
+                    <b-col cols="2" sm="2" md="2">
+                        <b-btn class="mobile-menu-button"><b-icon icon="list"></b-icon></b-btn>
+                    </b-col>
                 </b-row>
             </b-container>
         </b-navbar>
         <b-container fluid class="container-tw pt-5 main-view">
             <b-container>
-                <b-row>
-                   <b-col cols="12" sm="1" md="1" lg="1">
-                       <div class="menu">
-                           <MainMenu />
-                        </div>
+                <b-row class="d-flex flex-direction-column">
+                   <b-col cols="12" sm="1" md="1" lg="2">
+                        <MainMenu />
                    </b-col>
-                   <b-col col sm="12" md="11" lg="7" class="main-content">
+                   <b-col cols="12" sm="12" md="11" lg="6" class="main-content">
                        <NewPost
                         :token="token"
                         :userId="userId"
@@ -34,7 +35,7 @@
                         :userId="userId"
                        />
                    </b-col>
-                   <b-col col sm="12" md="12" lg="4">
+                   <b-col cols="12" sm="12" md="11" lg="4">
                        <div class="side-content">
                            <p>Powered by <a href="https://newsapi.org/">NewsAPI</a></p>
                            <News />
@@ -70,16 +71,19 @@ export default {
 <style lang="less" scoped>
     @twgray: #CCD6DD;
 
-    .menu {
-        position: fixed;
-        display: none;
-        @media screen and (min-width: 992px) {
-            display: inline-block;
-        }
-    }
-
     .main-nav {
         background: #fff;
+
+        .mobile-menu-button {
+            color: #000;
+            background: #fff;
+            border: none;
+            font-size: 1.6rem;
+
+            @media screen and (min-width: 769px) {
+                display: none;
+            }
+        }
     }
 
     .container-tw {
@@ -87,7 +91,7 @@ export default {
     }
 
     .container {
-        max-width: 960px;
+        max-width: 1200px;
     }
 
     .main-view {
@@ -109,8 +113,11 @@ export default {
     .side-content {
         border: 1px solid @twgray;
         border-radius: 10px;
-        margin: 20px 10px;
-        padding: 20px;
+
+        @media screen and (min-width: 800px) {
+            margin: 20px 10px;
+            padding: 20px;
+        }
     }
 
 </style>
