@@ -9,8 +9,6 @@
                 </b-textarea>
                  <b-button class="align-self-end" @click="editHandler(postData)" pill variant="primary">Post</b-button>
             </b-form>
-            {{ postId }}
-            {{ creator }}
         </b-modal>
     </div>
 </template>

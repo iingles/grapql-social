@@ -102,7 +102,7 @@ export default {
 
         .btn {
             font-size: 2rem;
-            color: #CCD6DD;
+            color: #a1a1a1;
 
             @media screen and (min-width: 992px) {
                 font-size: 1.4rem;

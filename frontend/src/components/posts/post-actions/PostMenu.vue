@@ -12,7 +12,12 @@
         :postId="postId"
         :content="content"
         /></b-dropdown-item>
-        <b-dropdown-item href="#"><Delete /></b-dropdown-item>
+        <b-dropdown-item href="#">
+          <Delete
+            :postId="postId"
+            :token="token"
+          />
+        </b-dropdown-item>
       </template>
       <template v-else>
         <b-dropdown-item href="#"><Report/></b-dropdown-item>
