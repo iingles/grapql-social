@@ -1,5 +1,5 @@
 <template>
-    <b-btn variant="link"><b-icon icon="trash"></b-icon>Trash</b-btn>
+    <b-btn variant="link"><b-icon icon="flag"></b-icon>Report</b-btn>
 </template>
 
 <script>

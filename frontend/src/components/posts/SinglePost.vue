@@ -13,6 +13,8 @@
                  :userId="userId"
                  :token="token"
                  :creatorId="post.creator._id"
+                 :postId="post._id"
+                 :content="post.content"
                 />
             </b-col>
         </b-row>

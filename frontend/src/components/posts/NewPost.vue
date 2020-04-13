@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     createPost (postData) {
-      console.log(postData)
       const vm = this
 
       if (postData.content === '') {
