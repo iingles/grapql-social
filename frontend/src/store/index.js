@@ -8,12 +8,16 @@ export default new Vuex.Store({
     user: {
       auth: false,
       token: '',
-      id: ''
+      id: '',
+      feedStack: []
     }
   },
   getters: {
     user (state) {
       return state.user
+    },
+    feed (state) {
+      return state.user.feedStack
     }
   },
   mutations: {
@@ -27,11 +31,17 @@ export default new Vuex.Store({
         token: '',
         id: ''
       }
+    },
+    loadFeed (state, feedStack) {
+      state.user.feedStack = feedStack
     }
   },
   actions: {
     setAuth ({ commit }, authData) {
       commit('setAuth', authData)
+    },
+    loadFeed ({ commit }, feedStack) {
+      commit('loadFeed', feedStack)
     }
   },
   modules: {

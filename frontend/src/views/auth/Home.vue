@@ -26,6 +26,10 @@
                         <MainMenu />
                    </b-col>
                    <b-col cols="12" sm="12" md="11" lg="6" class="main-content">
+                       <!-- <router-view
+                        :token="token"
+                        :userId="userId"
+                       /> -->
                        <NewPost
                         :token="token"
                         :userId="userId"

@@ -5,7 +5,7 @@
           :post="post"
           :token="token"
           :userId="userId"
-      />
+        />
       </div>
         <!-- <template v-if="feedStack.length > 0">
         </template>
@@ -26,7 +26,7 @@ export default {
   },
   data: () => {
     return {
-      feedStack: [],
+      // feedStack: [],
       posts: []
     }
   },
@@ -88,11 +88,14 @@ export default {
         if (resData.errors) {
           throw new Error('Fetching Posts Failed')
         }
-        vm.posts = resData.data.posts.posts.map(p => {
-          return {
-            ...p
-          }
+        this.$store.dispatch('loadFeed', {
+          feedStack: resData.data.posts.posts.map(p => {
+            return {
+              ...p
+            }
+          })
         })
+        vm.posts = this.$store.getters.feed.feedStack
       })
       .catch(err => {
         console.log(err)

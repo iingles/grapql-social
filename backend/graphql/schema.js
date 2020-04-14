@@ -45,13 +45,15 @@ export const bschema = buildSchema(`
         login(email: String!, password: String!): AuthData!
         getUser(_id: String!): User!
         posts(page: Int): PostData!
+        user: User!
     }
     
     type RootMutation {
         createUser(userInput: UserInputData): User!
         createPost(postInput: PostInputData): Post!
+        updateUser(id: ID!, userInput: UserInputData): User!
         updatePost(id: ID!, postInput: PostInputData): Post!
-        deleteOnePost(id: ID!): Boolean
+        deleteOnePost(id: ID!): Boolean        
     }
 
     schema {
