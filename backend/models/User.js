@@ -49,9 +49,11 @@ const userSchema = new Schema({
     backgroundImageUrl: {
         type: String
     },
-    profileImageUrl: {
-        type: String,
-        default: 'http://localhost:3000/images/user-images/default.png'
+    photoLg: {
+        type: String
+    },
+    photoSm: {
+        type: String
     },
     posts: [
         {

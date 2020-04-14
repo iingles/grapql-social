@@ -159,16 +159,14 @@ app.use((error, req, res, next) => {
 
 // Connect to Atlas/Mongo
 mongoose
-.connect(MONGODB_URI, {
-    useUnifiedTopology: true
-})
-.then(result =>{
-    console.log('Database connection successful')
-    app.listen(PORT, console.log(`Server listening on port ${PORT}`))
-})
-.catch(err => {
-    console.log(err)
-})
+    .connect(MONGODB_URI, { useUnifiedTopology: true })
+    .then(result =>{
+        console.log('Database connection successful')
+        app.listen(PORT, console.log(`Server listening on port ${PORT}`))
+    })
+    .catch(err => {
+        console.log(err)
+    })
 
 const clearImage = filePath => {
     filepath = path.join(__dirname, '..', filePath)
