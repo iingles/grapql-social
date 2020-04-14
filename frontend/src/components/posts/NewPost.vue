@@ -14,6 +14,9 @@
                 >
                 </b-form-textarea>
             </b-form-group>
+            <p>store: {{this.$store.getters.user.id }}</p>
+            <p>Local: {{local}}</p>
+            <p>Creator: {{newPostData.creator}}</p>
             <b-button class="align-self-end" @click="createPost(newPostData)" pill variant="primary">Post</b-button>
         </b-form>
     </b-card>
@@ -21,22 +24,19 @@
 
 <script>
 export default {
-  props: {
-    token: String,
-    userId: String
-  },
   data: () => {
     return {
       newPostData: {
-        creator: '',
+        creator: localStorage.getItem('userId'),
         content: ''
-      }
+      },
+      local: localStorage.getItem('userId')
     }
   },
   methods: {
     createPost (postData) {
       const vm = this
-      vm.newPostData.creator = vm.userId
+      // vm.newPostData.creator = vm.userId
 
       if (postData.content === '') {
         return {
@@ -63,7 +63,7 @@ export default {
         method: 'POST',
         body: JSON.stringify(graphqlQuery),
         headers: {
-          Authorization: `Bearer ${vm.token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'application/json'
         }
       })

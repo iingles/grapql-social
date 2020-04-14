@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Landing from '../views/Landing'
 import Login from '../views/Login'
 import Signup from '../views/Signup'
+
 import store from '../store/index'
 
 Vue.use(VueRouter)
@@ -99,11 +100,11 @@ router.beforeEach((to, from, next) => {
         params: { nextUrl: to.fullPath }
       })
     } else {
-      store.state.user = {
+      store.dispatch('setAuth', {
         auth: true,
-        token: localStorage.getItem('token'),
-        userId: localStorage.getItem('userId')
-      }
+        id: localStorage.getItem('userId'),
+        token: localStorage.getItem('token')
+      })
 
       next()
     }

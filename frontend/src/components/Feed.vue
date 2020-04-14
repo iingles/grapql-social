@@ -20,13 +20,10 @@
 import SinglePost from './posts/SinglePost'
 
 export default {
-  props: {
-    token: String,
-    userId: String
-  },
   data: () => {
     return {
-      // feedStack: [],
+      token: localStorage.getItem('token'),
+      userId: localStorage.getItem('userId'),
       posts: []
     }
   },

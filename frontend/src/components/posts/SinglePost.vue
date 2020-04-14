@@ -24,6 +24,7 @@
             <b-col cols="10">
                 <b-card-body class="pl-0 pt-0">
                     {{post.content}}
+                    {{ post.creator._id }}
                 </b-card-body>
             </b-col>
         </b-row>

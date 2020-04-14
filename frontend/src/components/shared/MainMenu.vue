@@ -16,10 +16,13 @@ export default {
     logout () {
       // Add a logout verification modal
 
+      this.$store.dispatch('logout')
+
       localStorage.removeItem('token')
       localStorage.removeItem('userId')
+      localStorage.removeItem('expirationDate')
 
-      this.$router.push('Login')
+      this.$router.push('/login')
     }
   }
 }

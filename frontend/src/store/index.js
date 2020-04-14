@@ -29,7 +29,8 @@ export default new Vuex.Store({
       state.user = {
         auth: false,
         token: '',
-        id: ''
+        id: '',
+        feedstack: ''
       }
     },
     loadFeed (state, feedStack) {
@@ -42,6 +43,9 @@ export default new Vuex.Store({
     },
     loadFeed ({ commit }, feedStack) {
       commit('loadFeed', feedStack)
+    },
+    logout ({ commit }, authData) {
+      commit('removeAuth', authData)
     }
   },
   modules: {

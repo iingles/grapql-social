@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <router-view
-      :token="token"
-      :userId="userId"
-    />
+    <router-view />
     <!-- <router-view
     :token="this.$store.getters.user.token"
     :userId="this.$store.getters.user.userId"
@@ -15,10 +12,7 @@
 <script>
 export default {
   data: () => {
-    return {
-      token: localStorage.getItem('token'),
-      userId: localStorage.getItem('userId')
-    }
+
   }
 }
 </script>
