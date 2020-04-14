@@ -30,6 +30,54 @@ const routes = [
       auth: true
     },
     component: () => import(/* webpackChunkName: "Home" */ '../views/auth/Home.vue')
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    meta: {
+      auth: true
+    },
+    component: () => import(/* webpackChunkName: "Settings" */ '../views/auth/Settings.vue')
+  },
+  {
+    path: '/notifications',
+    name: 'Notifications',
+    meta: {
+      auth: true
+    },
+    component: () => import(/* webpackChunkName: "Notifications" */ '../views/auth/Notifications.vue')
+  },
+  {
+    path: '/messages',
+    name: 'Messages',
+    meta: {
+      auth: true
+    },
+    component: () => import(/* webpackChunkName: "Messages" */ '../views/auth/Messages.vue')
+  },
+  {
+    path: '/profile/:id',
+    name: 'Profile',
+    meta: {
+      auth: true
+    },
+    component: () => import(/* webpackChunkName: "Profile" */ '../views/auth/Profile.vue')
+  },
+  {
+    path: '/help',
+    name: 'Help',
+    meta: {
+      auth: true
+    },
+    component: () => import(/* webpackChunkName: "Help" */ '../views/auth/Help.vue')
+  },
+  {
+    path: '*',
+    name: 'Not Found',
+    meta: {
+      auth: true
+    },
+    component: () => import(/* webpackChunkName: "Notifications" */ '../views/404')
   }
 ]
 

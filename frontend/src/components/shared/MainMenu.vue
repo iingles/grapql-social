@@ -1,7 +1,7 @@
 <template>
     <ul class="main-menu">
-        <li><b-nav-item><b-icon icon="house-door" class="mr-2"></b-icon><span class="menu-text">Home</span></b-nav-item></li>
-        <li><b-nav-item><b-icon icon="bell" class="mr-2"></b-icon><span class="menu-text">Notifications</span></b-nav-item></li>
+        <li><b-nav-item to="Home"><b-icon icon="house-door" class="mr-2"></b-icon><span class="menu-text">Home</span></b-nav-item></li>
+        <li><b-nav-item to="Notifications"><b-icon icon="bell" class="mr-2"></b-icon><span class="menu-text">Notifications</span></b-nav-item></li>
         <li><b-nav-item><b-icon icon="envelope" class="mr-2"></b-icon><span class="menu-text">Messages</span></b-nav-item></li>
         <li><b-nav-item><b-icon icon="person" class="mr-2"></b-icon><span class="menu-text">Profile</span></b-nav-item></li>
         <li><b-nav-item><b-icon icon="gear" class="mr-2"></b-icon><span class="menu-text">Settings</span></b-nav-item></li>
@@ -28,13 +28,14 @@ export default {
 <style lang="less" scoped>
   .main-menu {
     position: fixed;
+
     padding: 1rem 0;
     list-style-type: none;
     z-index: 1000;
     background: #fff;
 
-    @media screen and (min-width: 992px) {
-
+  @media screen and (min-width: 992px) {
+      position: fixed;
     }
 
     a {

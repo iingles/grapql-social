@@ -3,7 +3,7 @@
         <b-navbar fixed="top" fluid class="main-nav container-tw">
             <b-container class="d-flex justify-content-center">
                 <b-row class="d-flex">
-                    <b-col cols="12" sm="10" md="10" lg="12">
+                    <b-col cols="10" sm="10" md="10" lg="12">
                         <b-form >
                             <b-input-group size="sm" class="mb-2">
                                 <b-input-group-prepend is-text>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import News from './News'
+import News from '../../components/News'
 import NewPost from '../../components/posts/NewPost'
 import Feed from '../../components/Feed'
 import MainMenu from '../../components/shared/MainMenu'
