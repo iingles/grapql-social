@@ -1,6 +1,9 @@
 import fs from 'fs'
+
 require('dotenv').config()
 import mongoose from 'mongoose'
+import bcrypt from 'bcryptjs'
+
 import { User } from '../models/User'
 
 const db = mongoose.connection
@@ -50,8 +53,14 @@ function loadPeople() {
 async function main() {
     try {
         const People = loadPeople()
-        for (let person of People) {
+        for (let person of People) {            
+            // Encrypt the password
+            const hashedPw = await bcrypt.hash(person.data.password, 12)
+
+            // Create a new user
             let user = new User(person.data)
+  
+            user.password = hashedPw
 
             await user.save()
             .catch(e => console.error(`Error trying to seed database: ${e} person: ${person}`))

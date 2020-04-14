@@ -64,6 +64,7 @@ export default {
               _id
               firstName
               lastName
+              photoSm
             }
             createdAt
           }

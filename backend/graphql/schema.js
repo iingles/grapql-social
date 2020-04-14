@@ -17,6 +17,8 @@ export const bschema = buildSchema(`
         email: String!
         password: String!
         posts: [Post!]!
+        photoSm: String!
+        photoLg: String!
     }
 
     type AuthData {

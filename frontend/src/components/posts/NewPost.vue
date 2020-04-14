@@ -28,7 +28,7 @@ export default {
   data: () => {
     return {
       newPostData: {
-        creator: '5e843003c373d1001751a032', // Keep this static for now, until I can work out authentication stuff
+        creator: '',
         content: ''
       }
     }
@@ -36,6 +36,7 @@ export default {
   methods: {
     createPost (postData) {
       const vm = this
+      vm.newPostData.creator = vm.userId
 
       if (postData.content === '') {
         return {
