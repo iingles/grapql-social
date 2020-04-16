@@ -14,9 +14,6 @@
                 >
                 </b-form-textarea>
             </b-form-group>
-            <p>store: {{this.$store.getters.user.id }}</p>
-            <p>Local: {{local}}</p>
-            <p>Creator: {{newPostData.creator}}</p>
             <b-button class="align-self-end" @click="createPost(newPostData)" pill variant="primary">Post</b-button>
         </b-form>
     </b-card>

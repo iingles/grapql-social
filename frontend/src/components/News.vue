@@ -22,6 +22,7 @@ export default {
 
     const url = 'http://newsapi.org/v2/top-headlines?' +
           'country=us&' +
+          'pagesize=10&' +
           'apiKey=57c90487788b47509fb1288a7d2f6429'
     const req = new Request(url)
     fetch(req)
