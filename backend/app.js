@@ -33,18 +33,18 @@ import { auth } from './middleware/auth'
 */
 const morgan = require('morgan')
 
-//App Constants
+// App Constants
 const app = express()
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-rxesh.mongodb.net/${process.env.MONGO_DEFAULT_DB}`
 const PORT = process.env.PORT || 4000
 
-//For morgan -- logging to a file instead of the console
+// For morgan -- logging to a file instead of the console
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'),
 //Append to the file instead of overwriting it each time
 { flags: 'a'}
 )
 
-//Uploading files with Multer
+// Uploading files with Multer
 const fileStorage = multer.diskStorage({
     destination: (req, file, cb) => {
         //point at the images folder
@@ -133,7 +133,7 @@ app.put('/post-image', (req, res, next) => {
 })
 
 app.use(
-    '/graphql', 
+    '/graphql',
     graphqlHttp({
         schema: bschema,
         rootValue: bresolver,
@@ -157,7 +157,7 @@ app.use((error, req, res, next) => {
     res.status(status).json({ message, data})
 })
 
-// Connect to Atlas/Mongo
+
 mongoose
     .connect(MONGODB_URI, { useUnifiedTopology: true })
     .then(result =>{

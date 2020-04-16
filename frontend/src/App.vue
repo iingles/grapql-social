@@ -1,16 +1,19 @@
 <template>
   <div id="app">
+      <Navbar />
     <router-view />
-    <!-- <router-view
-    :token="this.$store.getters.user.token"
-    :userId="this.$store.getters.user.userId"
-    :auth="this.$store.getters.user.auth"
-    /> -->
   </div>
 </template>
 
 <script>
+import Navbar from './components/shared/Navbar'
+// import MainMenu from './components/shared/MainMenu'
+
 export default {
+  components: {
+    Navbar
+    // MainMenu
+  },
   data: () => {
 
   }
@@ -19,10 +22,60 @@ export default {
 
 <style lang="less">
   @twblue: #15202B;
-  @twgray: #3D5466;
+  // @twgray: #3D5466;
+  @twgray: #CCD6DD;
 
   .btn-primary {
     background: @twblue;
     color: #fff;
+  }
+
+  .main-nav {
+      background: #fff;
+
+      .mobile-menu-button {
+          color: #000;
+          background: #fff;
+          border: none;
+          font-size: 1.6rem;
+
+          @media screen and (min-width: 769px) {
+              display: none;
+          }
+      }
+  }
+
+  .container-tw {
+      border-bottom: 1px solid @twgray;
+  }
+
+  .container {
+      max-width: 1200px;
+  }
+
+  .main-view {
+      min-height: 100vh;
+  }
+
+  .main-content {
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+
+      @media screen and (min-width: 992px) {
+          border-left: 1px solid @twgray;
+          border-right: 1px solid @twgray;
+          padding: 20px;
+      }
+  }
+
+  .side-content {
+      border: 1px solid @twgray;
+      border-radius: 10px;
+
+      @media screen and (min-width: 800px) {
+          margin: 20px 10px;
+          padding: 20px;
+      }
   }
 </style>

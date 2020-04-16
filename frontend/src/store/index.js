@@ -23,7 +23,6 @@ export default new Vuex.Store({
   mutations: {
     setAuth (state, userAuth) {
       state.user = userAuth
-      console.log(state.user)
     },
     removeAuth (state, userAuth) {
       state.user = {

@@ -16,13 +16,19 @@ export const bschema = buildSchema(`
         lastName: String!
         email: String!
         password: String!
-        posts: [Post!]!
-        photoSm: String!
-        photoLg: String!
+        posts: [Post!]
+        photoSm: String
+        photoLg: String
+        bio: String
+        followers: [User!]
+        following: [User!]
+        birthday: String
+        status: String 
     }
 
     type AuthData {
-        token: String!
+        accessToken: String!
+        refreshToken: String!
         userId: String!
     }
 
@@ -36,6 +42,12 @@ export const bschema = buildSchema(`
         firstName: String!
         lastName: String!
         password: String!
+        photoSm: String
+        photoLg: String
+        backgroundImageUrl: String
+        bio: String
+        birthday: String
+        status: String
     }
 
     input PostInputData {

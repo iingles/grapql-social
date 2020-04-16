@@ -1,52 +1,27 @@
 <template>
     <div>
-        <b-navbar fixed="top" fluid class="main-nav container-tw">
-            <b-container class="d-flex justify-content-center">
-                <b-row class="d-flex">
-                    <b-col cols="10" sm="10" md="10" lg="12">
-                        <b-form >
-                            <b-input-group size="sm" class="mb-2">
-                                <b-input-group-prepend is-text>
-                                    <b-icon icon="search"></b-icon>
-                                </b-input-group-prepend>
-                                <b-form-input type="search" placeholder="Search"></b-form-input>
-                            </b-input-group>
-                        </b-form>
-                    </b-col>
-                    <b-col cols="2" sm="2" md="2">
-                        <b-btn class="mobile-menu-button"><b-icon icon="list"></b-icon></b-btn>
-                    </b-col>
-                </b-row>
-            </b-container>
-        </b-navbar>
-        <b-container fluid class="container-tw pt-5 main-view">
-            <b-container>
-                <b-row class="d-flex flex-direction-column">
-                   <b-col cols="12" sm="1" md="1" lg="2">
-                        <MainMenu />
-                   </b-col>
-                   <b-col cols="12" sm="12" md="11" lg="6" class="main-content">
-                       <!-- <router-view
-                        :token="token"
-                        :userId="userId"
-                       /> -->
-                       <NewPost
-                        :token="token"
-                        :userId="userId"
-                       />
-                       <Feed
-                        :token="token"
-                        :userId="userId"
-                       />
-                   </b-col>
-                   <b-col cols="12" sm="12" md="11" lg="4">
-                       <div class="side-content">
-                           <p>Powered by <a href="https://newsapi.org/">NewsAPI</a></p>
-                           <News />
-                       </div>
-                   </b-col>
-                </b-row>
-            </b-container>
+        <b-container class="mt-5">
+            <b-row class="d-flex flex-direction-column">
+                <b-col cols="12" sm="1" md="1" lg="2">
+                    <MainMenu />
+                </b-col>
+                <b-col cols="12" sm="12" md="11" lg="6" class="main-content">
+                    <NewPost
+                    :token="token"
+                    :userId="userId"
+                    />
+                    <Feed
+                    :token="token"
+                    :userId="userId"
+                    />
+                </b-col>
+                <b-col cols="12" sm="12" md="11" lg="4">
+                    <div class="side-content">
+                        <p>Powered by <a href="https://newsapi.org/">NewsAPI</a></p>
+                        <News />
+                    </div>
+                </b-col>
+            </b-row>
         </b-container>
     </div>
 </template>
@@ -56,7 +31,6 @@ import News from '../../components/News'
 import NewPost from '../../components/posts/NewPost'
 import Feed from '../../components/Feed'
 import MainMenu from '../../components/shared/MainMenu'
-// import Recent from '../../components/Recent'
 
 export default {
   props: {
@@ -64,9 +38,9 @@ export default {
     userId: String
   },
   components: {
+    MainMenu,
     NewPost,
     Feed,
-    MainMenu,
     News
   }
 }

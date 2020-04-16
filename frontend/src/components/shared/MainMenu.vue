@@ -1,17 +1,25 @@
 <template>
     <ul class="main-menu">
-        <li><b-nav-item to="Home"><b-icon icon="house-door" class="mr-2"></b-icon><span class="menu-text">Home</span></b-nav-item></li>
-        <li><b-nav-item to="Notifications"><b-icon icon="bell" class="mr-2"></b-icon><span class="menu-text">Notifications</span></b-nav-item></li>
-        <li><b-nav-item><b-icon icon="envelope" class="mr-2"></b-icon><span class="menu-text">Messages</span></b-nav-item></li>
-        <li><b-nav-item><b-icon icon="person" class="mr-2"></b-icon><span class="menu-text">Profile</span></b-nav-item></li>
-        <li><b-nav-item><b-icon icon="gear" class="mr-2"></b-icon><span class="menu-text">Settings</span></b-nav-item></li>
-        <li><b-nav-item><b-icon icon="question-circle" class="mr-2"></b-icon><span class="menu-text">Help</span></b-nav-item></li>
+        <li><b-nav-item to="/home"><b-icon icon="house-door" class="mr-2"></b-icon><span class="menu-text">Home</span></b-nav-item></li>
+        <li><b-nav-item to="/notifications"><b-icon icon="bell" class="mr-2"></b-icon><span class="menu-text">Notifications</span></b-nav-item></li>
+        <li><b-nav-item to="/messages"><b-icon icon="envelope" class="mr-2"></b-icon><span class="menu-text">Messages</span></b-nav-item></li>
+        <li><b-nav-item :to="`/profile/${userId}`"><b-icon icon="person" class="mr-2"></b-icon><span class="menu-text">Profile</span></b-nav-item></li>
+        <li><b-nav-item to="/settings"><b-icon icon="gear" class="mr-2"></b-icon><span class="menu-text">Settings</span></b-nav-item></li>
+        <li><b-nav-item to="/help"><b-icon icon="question-circle" class="mr-2"></b-icon><span class="menu-text">Help</span></b-nav-item></li>
         <li><b-nav-item @click="logout()"><b-icon icon="box-arrow-right" class="mr-2"></b-icon><span class="menu-text">Logout</span></b-nav-item></li>
     </ul>
 </template>
 
 <script>
 export default {
+  data: () => {
+    return {
+      userId: ''
+    }
+  },
+  created () {
+    this.userId = localStorage.getItem('userId')
+  },
   methods: {
     logout () {
       // Add a logout verification modal

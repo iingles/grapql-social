@@ -7,7 +7,7 @@ import { Post } from '../models/Post'
 
 export const bresolver = {
 
-    getUser: async function ({ _id }, req) {
+    getUser: async function ({ _id }) {
         const user = await User.findById(_id)
 
         return user
@@ -118,7 +118,8 @@ export const bresolver = {
         }
     },
 
-    login: async function ({ email, password }) {
+    login: async ({ email, password }) => {
+        
         const user = await User.findOne({ email: email })
         
         if (!user) {
@@ -128,26 +129,35 @@ export const bresolver = {
         }
 
         const isEqual = await bcrypt.compare(password, user.password)
-        if(!isEqual) {
+        if (!isEqual) {
             const error = new Error('Password is incorrect')
             error.code = 401
             throw error
         }
         
-        const token = jwt.sign({
-                userId: user._id.toString(),
-                email: user.email
-            },
+        const accessToken = jwt.sign({
+            userId: user._id.toString(),
+            email: user.email
+        },
                 
-            'somesupersecretstringcheckoutthedocsfordoingthisright',
+            process.env.ACCESS_TOKEN_SECRET,
+
             {
                 expiresIn: '1h'
             }
         )
-        
-        return { 
-            token: token, 
-            userId: user._id.toString()
+
+        const refreshToken = jwt.sign({
+            userId: user._id.toString(),
+            email: user.email
+        },
+            process.env.REFRESH_TOKEN_SECRET,
+        )
+
+        return {
+            accessToken: accessToken,
+            refreshToken: refreshToken,
+            userId: user._id.toString(),
         }
     },
   

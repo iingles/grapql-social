@@ -13,7 +13,7 @@ export const auth = (req, res, next) => {
     let decodedToken
 
     try {
-        decodedToken = jwt.verify(token, 'somesupersecretstringcheckoutthedocsfordoingthisright')
+        decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
     } catch (err) {
         req.isAuth = false
         return next()

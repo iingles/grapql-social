@@ -1,7 +1,10 @@
 {
     "env": {
+        "PORT":"4000",
         "MONGO_USER": "demoUser",
         "MONGO_PASSWORD":"Ud56ODrjoetECfUE",
-        "MONGO_DEFAULT_DB":"messages"
+        "MONGO_DEFAULT_DB":"messages",
+        "ACCESS_TOKEN_SECRET":"d39e7a50cea8b57c02b1f323e29827a45ee53c53df349fa0c1033f0152e180243fbbfb78b81c1ea9d014a296cc23a05bbe8067db138126bb1e6bf337533f3784",
+        "REFRESH_TOKEN_SECRET":"cc137390be2d1b831a8df2d624849c9178dce44da4d7394bb488ce519dff7c0cdeaee8a9acfe50562fbb98587c7f5724b0f905f4aee08d46751658e2f974542b"
     }
 }

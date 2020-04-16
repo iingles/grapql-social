@@ -4,7 +4,7 @@
       <b-card title="Login">
         <b-form @submit.prevent="loginHandler" @keyup.enter="loginHandler">
           <b-button
-            @click="setDemoUser('demouser@example.com', 'iiiiiiiiii1')"
+            @click="setDemoUser('jerry90@example.com', 'Morrison90^(')"
           >Log in as a demo user</b-button>
 
           <b-form-group id="input-group-1" label="Email" label-for="email">
@@ -48,8 +48,9 @@ export default {
       const graphQuery = {
         query: `{ 
             login(email: "${vm.authData.email}", password:"${vm.authData.password}") {
-                token
-                userId
+               accessToken
+               refreshToken
+               userId
             }
         }`
       }
@@ -73,20 +74,18 @@ export default {
             )
           }
           if (resData.errors) {
-            console.log(resData.errors)
             throw new Error('Login failed.')
           }
 
-          // Set the token in localstorage (for now, have to learn how to do this better)
-          localStorage.setItem('token', resData.data.login.token)
-          localStorage.setItem('userId', resData.data.login.userId)
+          // const authData = {
+          //   accessToken: resData.data.login.accessToken,
+          //   refreshToken: resData.data.login.refreshToken,
+          //   userId: resData.data.login.userId
+          // }
 
-          // Set the local user state (Is this secure or is there a better way to do it?)
-          this.$store.dispatch('setAuth', {
-            auth: true,
-            token: localStorage.getItem('token'),
-            id: localStorage.getItem('userId')
-          })
+          localStorage.setItem('refreshToken', resData.data.login.refreshToken)
+          localStorage.setItem('token', resData.data.login.accessToken)
+          localStorage.setItem('userId', resData.data.login.userId)
 
           // Redirect to home
           this.$router.push('/home')

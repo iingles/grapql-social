@@ -105,7 +105,6 @@ router.beforeEach((to, from, next) => {
         id: localStorage.getItem('userId'),
         token: localStorage.getItem('token')
       })
-
       next()
     }
   } else { next() }

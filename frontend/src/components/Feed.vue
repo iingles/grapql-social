@@ -1,17 +1,17 @@
 <template>
     <section>
-      <div v-for="post in posts" :key="post._id">
+        <template v-if="feedStack.length > 0">
+          <div v-for="post in feedStack" :key="post._id">
         <SinglePost
           :post="post"
           :token="token"
           :userId="userId"
-        />
-      </div>
-        <!-- <template v-if="feedStack.length > 0">
+          />
+        </div>
         </template>
         <template v-else>
           <h4>You don't have anything in your feed.</h4>
-        </template> -->
+        </template>
     </section>
 </template>
 
@@ -24,7 +24,7 @@ export default {
     return {
       token: localStorage.getItem('token'),
       userId: localStorage.getItem('userId'),
-      posts: []
+      feedStack: []
     }
   },
   components: {
@@ -51,8 +51,7 @@ export default {
     }
 
     const graphQLQuery = {
-      query: `
-      {
+      query: `{
         posts(page: ${page}) {
           posts {
             _id
@@ -66,8 +65,7 @@ export default {
             createdAt
           }
         }
-      }
-      `
+      }`
     }
 
     // For now, grab all posts in database
@@ -93,7 +91,7 @@ export default {
             }
           })
         })
-        vm.posts = this.$store.getters.feed.feedStack
+        vm.feedStack = this.$store.getters.feed.feedStack
       })
       .catch(err => {
         console.log(err)

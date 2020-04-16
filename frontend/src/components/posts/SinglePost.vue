@@ -2,7 +2,7 @@
     <b-card class="mb-1">
         <b-row class="d-flex post-header">
             <b-col cols="2">
-                <b-avatar :src="post.creator.photoSm" variant="info" :text="post.creator.firstName[0]" href="#"></b-avatar>
+                <b-avatar :to="`/profile/${userId}`" :src="post.creator.photoSm" variant="info" :text="post.creator.firstName[0]" href="#"></b-avatar>
             </b-col>
             <b-col cols="8" class="d-flex mt-0 mb-0 ">
                 <h5 class="pb-0 mb-0">{{ `${post.creator.firstName} ${post.creator.lastName}` }}</h5>
