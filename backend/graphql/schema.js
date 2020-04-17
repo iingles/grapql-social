@@ -20,8 +20,8 @@ export const bschema = buildSchema(`
         photoSm: String
         photoLg: String
         bio: String
-        followers: [User!]
-        following: [User!]
+        followers: [User!]!
+        following: [User!]!
         birthday: String
         status: String 
     }
@@ -50,6 +50,11 @@ export const bschema = buildSchema(`
         status: String
     }
 
+    input followData {
+        _id: ID!
+        action: String!
+    }
+
     input PostInputData {
         content: String!
         creatorId: String!
@@ -65,6 +70,7 @@ export const bschema = buildSchema(`
     type RootMutation {
         createUser(userInput: UserInputData): User!
         createPost(postInput: PostInputData): Post!
+        updateFollows(id: ID!, followInput: followData): User!
         updateUser(id: ID!, userInput: UserInputData): User!
         updatePost(id: ID!, postInput: PostInputData): Post!
         deleteOnePost(id: ID!): Boolean        

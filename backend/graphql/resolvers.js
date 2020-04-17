@@ -27,9 +27,9 @@ export const bresolver = {
         }
 
         if (
-            validator.isEmpty(userInput.password)|| 
-            !validator.isLength(userInput.password, { min: 5} )
-            ){
+            validator.isEmpty(userInput.password) ||
+            !validator.isLength(userInput.password, { min: 5 })
+        ) {
             errors.push({
                 message: 'Password must be at least 5 characters.'
             })
@@ -41,7 +41,7 @@ export const bresolver = {
         }
 
         // Check to see if a user with that email already exists; if so, throw an error
-        const existingUser = await User.findOne({email: userInput.email})
+        const existingUser = await User.findOne({ email: userInput.email })
 
         if (existingUser) {
             const error = new Error('User already exists!')
@@ -54,13 +54,13 @@ export const bresolver = {
         const hashedPw = await bcrypt.hash(userInput.password, 12)
 
         // Create a new user
-        const user = new User ({
+        const user = new User({
             email: userInput.email,
             firstName: userInput.firstName,
             lastName: userInput.lastName,
             password: hashedPw
         })
-        
+
         // Store the new user in the database
         const createdUser = await user.save()
 
@@ -73,7 +73,7 @@ export const bresolver = {
             _id: createdUser._id.toString()
         }
     },
-    
+
     updateUser: async function ({ userInput }, req) {
         if (!req.isAuth) {
             const error = new Error('Not Authenticated')
@@ -101,7 +101,7 @@ export const bresolver = {
         }
 
         if (validator.isEmpty(userInput.firstName)) {
-            errors.push({ message: 'First name required.'})
+            errors.push({ message: 'First name required.' })
         }
 
         if (validator.isEmpty(userInput.lastName)) {
@@ -109,7 +109,7 @@ export const bresolver = {
         }
 
         user = userInput
-    
+
         const updatedUser = await user.save()
 
         return {
@@ -118,10 +118,60 @@ export const bresolver = {
         }
     },
 
+    updateFollows: async ({ id, followInput }, req) => {
+
+        if (!req.isAuth) {
+            const error = new Error('Not Authenticated')
+            error.code = 401
+            throw error
+        }
+
+        const user = await User.findById(id)
+        const user2 = await User.findById(followInput._id)
+
+        if (!user) {
+            const error = new Error('Unable to find user')
+            error.code = 404
+            throw error
+        }
+
+        if (followInput.action === 'add') {
+            if (!user.following.find(el => el === user2._id)) {
+                // Update the follows of both users
+                
+                user.following.push(followInput._id)
+                user2.followers.push(id)
+
+                await user.save()
+                await user2.save()
+            } else {
+                console.log(`already following ${user2.firstName}`)
+            }
+
+            return {
+                following: user.following
+            }
+        }
+
+        if (followInput.action === 'remove') {
+            // Remove the users from their respective follows arrays
+            user.following.splice(user.following.indexOf(user2._id), 1)
+            user2.followers.splice(user2.followers.indexOf(user._id), 1)
+
+            await user.save()
+            await user2.save()
+            console.log('Successfully removed user.')
+            return {
+                following: user.following
+            }
+        }
+
+    },
+
     login: async ({ email, password }) => {
-        
+
         const user = await User.findOne({ email: email })
-        
+
         if (!user) {
             const error = new Error('User not found')
             error.code = 401
@@ -134,12 +184,12 @@ export const bresolver = {
             error.code = 401
             throw error
         }
-        
+
         const accessToken = jwt.sign({
             userId: user._id.toString(),
             email: user.email
         },
-                
+
             process.env.ACCESS_TOKEN_SECRET,
 
             {
@@ -160,11 +210,11 @@ export const bresolver = {
             userId: user._id.toString(),
         }
     },
-  
+
     createPost: async function ({ postInput }, req) {
         // Check isAuth to see if the user is authenticated
 
-        const creatorId = postInput.creatorId 
+        const creatorId = postInput.creatorId
 
         if (!req.isAuth) {
             const error = new Error('Not Authenticated')
@@ -182,17 +232,17 @@ export const bresolver = {
             error.code = 422
             throw error
         }
-    
+
         // Get the post's creator
         const user = await User.findById(creatorId)
-        
+
         // If there is no user, something went wrong; throw an error
         if (!user) {
             const error = new Error('Invalid User')
             error.code = 401
             throw error
         }
-        
+
         // If we have an authenticated user and valid input, create a new post
         const post = new Post({
             content: postInput.content,
@@ -201,19 +251,19 @@ export const bresolver = {
         })
 
         const createdPost = await post.save()
-        
+
         // Push the new post to the creating user's posts
         user.posts.push(createdPost)
         await user.save()
-        
+
         return {
-            ...createdPost._doc, 
-            _id: createdPost._id.toString(), 
+            ...createdPost._doc,
+            _id: createdPost._id.toString(),
             createdAt: createdPost.createdAt.toISOString(),
             updatedAt: createdPost.updatedAt.toISOString()
-        }    
+        }
     },
-  
+
     posts: async function ({ page }, req) {
 
         if (!req.isAuth) {
@@ -232,12 +282,12 @@ export const bresolver = {
 
         const totalPosts = await Post.find().countDocuments()
         const posts = await Post
-        .find()
+            .find()
             .sort({ createdAt: -1 })
             .skip((page - 1) * perPage)
             .limit(perPage)
-        .populate('creator')
-        
+            .populate('creator')
+
         return {
             posts: posts.map(p => {
                 return {
@@ -252,7 +302,7 @@ export const bresolver = {
     },
 
     updatePost: async function ({ id, postInput }, req) {
-        
+
         if (!req.isAuth) {
             const error = new Error('Not Authenticated')
             error.code = 401
@@ -272,7 +322,7 @@ export const bresolver = {
         if (post.creator._id.toString() !== userId.toString()) {
             const error = new Error('Not authorized!')
             error.code = 403
-            throw error            
+            throw error
         }
 
         // Validation
@@ -304,7 +354,7 @@ export const bresolver = {
         }
     },
 
-    deleteOnePost: async function({ id }, req) {
+    deleteOnePost: async function ({ id }, req) {
 
         if (!req.isAuth) {
             const error = new Error('Not Authenticated')
@@ -333,5 +383,5 @@ export const bresolver = {
         await user.save()
         return true
     }
-    
+
 }

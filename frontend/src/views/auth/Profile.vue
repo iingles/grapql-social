@@ -26,6 +26,7 @@
             </b-col>
           </b-row>
         </b-col>
+
         <b-col cols="12" sm="12" md="5" lg="3" justify-self="end">
           <template v-if="loggedInUser === this.$route.params.id">
               <b-button v-b-modal.editProfileModal pill variant="outline-primary" href="">Edit Profile</b-button>
@@ -34,18 +35,23 @@
             </b-modal>
           </template>
           <template v-else>
-            <b-button pill variant="outline-primary" href="">Follow</b-button>
+                <FollowToggle
+                  :isFollowing="followers.find(el => el._id === loggedInUser) ? true : false"
+                />
           </template>
         </b-col>
+
       </b-row>
     </b-container>
   </b-col>
 </template>
 
 <script>
+import FollowToggle from '../../components/profile/profile-actions/FollowToggle'
 
 export default {
   components: {
+    FollowToggle
   },
   data: () => {
     return {
@@ -53,61 +59,73 @@ export default {
       token: localStorage.getItem('token'),
       followers: [],
       following: [],
-      loggedInUser: ''
+      loggedInUser: localStorage.getItem('userId')
     }
   },
   created () {
-    // Fetch the user from the URL on page creation
-    const vm = this
+    this.getUserInfo()
+  },
+  watch: {
+    // Watch for route change and refresh the info each time
+    $route: 'getUserInfo'
+  },
+  methods: {
+    getUserInfo () {
+      let userData
+      const vm = this
 
-    vm.loggedInUser = localStorage.getItem('userId')
-
-    const graphQLQuery = {
-      query: `{
-        getUser(_id:"${this.$route.params.id}") {
+      const graphQLQuery = {
+        query: `{
+      getUser(_id:"${this.$route.params.id}") {
+        _id
+        firstName
+        lastName
+        bio
+        status
+        followers {
           _id
-          firstName
-          lastName
-          bio
-          status
-          followers {
-            _id
-          }
-          following {
-            _id
-          }
-          photoLg
-          photoSm
-          posts {
-            _id
-          }
         }
-      }`
-    }
+        following {
+          _id
+        }
+        photoLg
+        photoSm
+        posts {
+          _id
+        }
+      }
+    }`
+      }
 
-    fetch('http://localhost:4000/graphql', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${vm.token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(graphQLQuery)
-    })
-      .then(res => {
-        return res.json()
+      fetch('http://localhost:4000/graphql', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(graphQLQuery)
       })
-      .then(resData => {
-        if (resData.errors) {
-          throw new Error('Faaailed to fetch user')
-        }
-        vm.user = resData.data.getUser
-        vm.user.followers = resData.data.getUser.followers
-        vm.user.following = resData.data.getUser.following
-      })
-      .catch(err => {
-        console.log(err)
-      })
+        .then(res => {
+          return res.json()
+        })
+        .then(resData => {
+          if (resData.errors) {
+            throw new Error('Failed to fetch user')
+          }
+          // loggedInUser = localStorage.getItem('userId')
+
+          userData = resData.data.getUser
+
+          vm.followers = resData.data.getUser.followers
+          vm.following = resData.data.getUser.following
+          vm.user = userData
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
   }
+
 }
 </script>
 

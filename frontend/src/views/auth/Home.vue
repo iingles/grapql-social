@@ -1,5 +1,5 @@
 <template>
-    <b-col cols="12" sm="12" md="11" lg="6" class="main-content ml-5">
+    <b-col cols="12" sm="12" md="11" lg="6" class="main-content">
       <NewPost :token="token" :userId="userId" />
       <Feed :token="token" :userId="userId" />
     </b-col>
