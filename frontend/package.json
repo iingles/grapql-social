@@ -13,7 +13,6 @@
     "core-js": "^3.6.4",
     "jquery": "^3.4.1",
     "vue": "^2.6.11",
-    "vue-apollo": "^3.0.0-beta.11",
     "vue-router": "^3.1.5",
     "vuex": "^3.1.2"
   },
@@ -34,7 +33,6 @@
     "graphql-tag": "^2.9.0",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
-    "vue-cli-plugin-apollo": "~0.21.3",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

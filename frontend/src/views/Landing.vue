@@ -4,9 +4,7 @@
             <b-container class="d-flex justify-content-center">
                 <div>
                     <header class="section-header">
-                        <h1>Explore.</h1>
-                        <h1>Learn.</h1>
-                        <h1>Connect.</h1>
+                       <h1>Twitter Clone</h1>
                     </header>
                     <b-button pill variant="primary" href="/signup">sign up</b-button>
                 </div>

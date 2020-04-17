@@ -21,19 +21,22 @@
               {{ user.status }}
             </b-col>
             <b-col>
-              <strong>{{ user.followers.length }}</strong>&nbsp;followers
-              <strong>{{ user.following.length }}</strong>&nbsp;following
+              <strong>{{ followers.length }}</strong>&nbsp;followers
+              <strong>{{ following.length }}</strong>&nbsp;following
             </b-col>
           </b-row>
         </b-col>
-
         <b-col cols="12" sm="12" md="5" lg="3" justify-self="end">
-          <b-button v-b-modal.editProfileModal pill variant="outline-primary" href="">Edit Profile</b-button>
+          <template v-if="loggedInUser === this.$route.params.id">
+              <b-button v-b-modal.editProfileModal pill variant="outline-primary" href="">Edit Profile</b-button>
+            <b-modal id="editProfileModal" title="Edit Profile">
+              <p class="my-4">Hello from modal!</p>
+            </b-modal>
+          </template>
+          <template v-else>
+            <b-button pill variant="outline-primary" href="">Follow</b-button>
+          </template>
         </b-col>
-
-        <b-modal id="editProfileModal" title="Edit Profile">
-          <p class="my-4">Hello from modal!</p>
-        </b-modal>
       </b-row>
     </b-container>
   </b-col>
@@ -47,17 +50,22 @@ export default {
   data: () => {
     return {
       user: {},
-      token: localStorage.getItem('token')
+      token: localStorage.getItem('token'),
+      followers: [],
+      following: [],
+      loggedInUser: ''
     }
   },
   created () {
     // Fetch the user from the URL on page creation
-
     const vm = this
+
+    vm.loggedInUser = localStorage.getItem('userId')
 
     const graphQLQuery = {
       query: `{
         getUser(_id:"${this.$route.params.id}") {
+          _id
           firstName
           lastName
           bio
@@ -93,6 +101,8 @@ export default {
           throw new Error('Faaailed to fetch user')
         }
         vm.user = resData.data.getUser
+        vm.user.followers = resData.data.getUser.followers
+        vm.user.following = resData.data.getUser.following
       })
       .catch(err => {
         console.log(err)

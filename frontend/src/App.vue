@@ -25,9 +25,6 @@ export default {
   components: {
     Navbar,
     MainMenu
-  },
-  data: () => {
-
   }
 }
 </script>
