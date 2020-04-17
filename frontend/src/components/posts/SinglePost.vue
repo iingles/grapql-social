@@ -5,7 +5,7 @@
                 <b-avatar size="4rem" :to="`/profile/${post.creator._id}`" :src="post.creator.photoSm" :text="post.creator.firstName[0]" href="#"></b-avatar>
             </b-col>
             <b-col cols="8" class="d-flex mt-0 mb-0 ">
-                <h5 class="pb-0 mb-0">{{ `${post.creator.firstName} ${post.creator.lastName}` }}</h5>
+                <span class="user-name pb-0 mb-0">{{ `${post.creator.firstName} ${post.creator.lastName}` }}</span>
                 <span class="date-time pb-0 mb-0 ml-3">{{ post.createdAt }}</span>
             </b-col>
             <b-col cols="2">
@@ -24,7 +24,6 @@
             <b-col cols="10">
                 <b-card-body class="pl-0 pt-0">
                     {{post.content}}
-                    {{ post.creator._id }}
                 </b-card-body>
             </b-col>
         </b-row>
@@ -78,6 +77,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+    .user-name {
+        font-weight: bold;
+    }
 
     .date-time {
         color: #707070;

@@ -13,9 +13,6 @@
                     </b-form>
                 </b-col>
                 <b-col cols="2" sm="2" md="2">
-                    <template v-if="this.$store.getters.user.auth">
-                        <b-btn class="mobile-menu-button"><b-icon icon="list"></b-icon></b-btn>
-                    </template>
                 </b-col>
             </b-row>
         </b-container>
@@ -23,4 +20,7 @@
 </template>
 
 <style lang="less" scoped>
+    .main-nav {
+        background: #fff;
+    }
 </style>

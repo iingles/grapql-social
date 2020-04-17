@@ -27,10 +27,14 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
+
     meta: {
       auth: true
     },
-    component: () => import(/* webpackChunkName: "Home" */ '../views/auth/Home.vue')
+    components: {
+      default: () => import(/* webpackChunkName: "Home" */ '../views/auth/Home.vue'),
+      SidebarView: () => import(/* webpackChunkName: "News" */ '../components/News.vue')
+    }
   },
   {
     path: '/settings',
@@ -38,7 +42,10 @@ const routes = [
     meta: {
       auth: true
     },
-    component: () => import(/* webpackChunkName: "Settings" */ '../views/auth/Settings.vue')
+    components: {
+      default: () => import(/* webpackChunkName: "Settings" */ '../views/auth/Settings.vue'),
+      SidebarView: () => import(/* webpackChunkName: "AccountSettings" */ '../components/AccountSettings.vue')
+    }
   },
   {
     path: '/notifications',
@@ -46,7 +53,10 @@ const routes = [
     meta: {
       auth: true
     },
-    component: () => import(/* webpackChunkName: "Notifications" */ '../views/auth/Notifications.vue')
+    components: {
+      default: () => import(/* webpackChunkName: "Notifications" */ '../views/auth/Notifications.vue'),
+      SidebarView: () => import(/* webpackChunkName: "Trending" */ '../components/Trending.vue')
+    }
   },
   {
     path: '/messages',
@@ -54,7 +64,10 @@ const routes = [
     meta: {
       auth: true
     },
-    component: () => import(/* webpackChunkName: "Messages" */ '../views/auth/Messages.vue')
+    components: {
+      default: () => import(/* webpackChunkName: "Messages" */ '../views/auth/Messages.vue'),
+      SidebarView: () => import(/* webpackChunkName: "MessagePane" */ '../components/MessagePane.vue')
+    }
   },
   {
     path: '/profile/:id',
@@ -62,7 +75,10 @@ const routes = [
     meta: {
       auth: true
     },
-    component: () => import(/* webpackChunkName: "Profile" */ '../views/auth/Profile.vue')
+    components: {
+      default: () => import(/* webpackChunkName: "Profile" */ '../views/auth/Profile.vue'),
+      SidebarView: () => import(/* webpackChunkName: "Trending" */ '../components/Trending.vue')
+    }
   },
   {
     path: '/help',
@@ -70,7 +86,10 @@ const routes = [
     meta: {
       auth: true
     },
-    component: () => import(/* webpackChunkName: "Help" */ '../views/auth/Help.vue')
+    components: {
+      default: () => import(/* webpackChunkName: "Help" */ '../views/auth/Help.vue'),
+      SidebarView: () => import(/* webpackChunkName: "HelpInfo" */ '../components/HelpInfo.vue')
+    }
   },
   {
     path: '*',

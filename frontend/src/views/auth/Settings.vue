@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <b-col cols="12" sm="12" md="11" lg="6" class="main-content">
     <b-form-group label="Inline switch style checkboxes">
       <b-form-checkbox-group
         v-model="selected"
@@ -16,7 +16,7 @@
         stacked
       ></b-form-checkbox-group>
     </b-form-group>
-  </div>
+  </b-col>
 </template>
 
 <script>

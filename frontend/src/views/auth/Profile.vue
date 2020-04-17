@@ -1,49 +1,45 @@
 <template>
-  <b-container class="mt-5">
-    <b-row class="d-flex flex-direction-column">
-      <b-col cols="12" sm="1" md="1" lg="2">
-          <MainMenu />
-      </b-col>
-      <b-col cols="12" sm="12" md="11" lg="6" class="main-content">
-          <b-container fluid>
-            <b-row>
-              <b-container fluid class="profile-banner">
-                <b-row>
-                  <b-col id="profile-picture" cols="5" sm="5" md="4" lg="4">
-                    <b-img-lazy fluid-grow :src="`${user.photoLg}`" rounded="circle" alt="photo of person"></b-img-lazy>
-                  </b-col>
-                </b-row>
-              </b-container>
-            </b-row>
-            <b-row class="d-flex flex-column mt-5 pt-3">
-              <b-col>
-                <h3>{{ user.firstName }} {{ user.lastName }}</h3>
-              </b-col>
-              <b-col>
-                {{ user.status }}
-              </b-col>
-              <b-col>
-                <strong>{{ user.followers.length }}</strong>&nbsp;followers
-                <strong>{{ user.following.length }}</strong>&nbsp;following
-              </b-col>
-            </b-row>
-          </b-container>
-      </b-col>
-      <b-col cols="12" sm="12" md="11" lg="4">
-          <div class="side-content">
-            {{ user }}
-          </div>
-      </b-col>
-    </b-row>
-  </b-container>
+  <b-col cols="12" sm="12" md="11" lg="6" class="main-content mr-0 ml-0">
+    <b-container fluid>
+      <b-row>
+        <b-container fluid class="profile-banner">
+          <b-row>
+            <b-col id="profile-picture" cols="5" sm="5" md="4" lg="4">
+              <b-img-lazy fluid-grow :src="`${user.photoLg}`" rounded="circle" alt="photo of person"></b-img-lazy>
+            </b-col>
+          </b-row>
+        </b-container>
+      </b-row>
+      <b-row class="d-flex" align-h="between">
+
+        <b-col cols="12" sm="12" md="7" lg="9">
+          <b-row class="d-flex flex-column mt-5 pt-3 pt-sm-5">
+            <b-col>
+              <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+            </b-col>
+            <b-col>
+              {{ user.status }}
+            </b-col>
+            <b-col>
+              <strong>{{ user.followers.length }}</strong>&nbsp;followers
+              <strong>{{ user.following.length }}</strong>&nbsp;following
+            </b-col>
+          </b-row>
+        </b-col>
+
+        <b-col cols="12" sm="12" md="5" lg="3" justify-self="end">
+          <b-button pill variant="primary" href="">Edit Profile</b-button>
+        </b-col>
+
+      </b-row>
+    </b-container>
+  </b-col>
 </template>
 
 <script>
-import MainMenu from '../../components/shared/MainMenu'
 
 export default {
   components: {
-    MainMenu
   },
   data: () => {
     return {
@@ -103,6 +99,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  .main-content {
+    margin: 0;
+    padding: 0;
+  }
+
   #profile-picture {
     position: relative;
     top: 5rem;

@@ -1,7 +1,7 @@
 <template>
-  <b-dropdown variant="link" no-caret>
+  <b-dropdown class="post-menu-button" variant="link" no-caret>
       <template v-slot:button-content>
-          <b-icon icon="three-dots-vertical"></b-icon>
+          <b-icon class="post-menu-button" icon="three-dots-vertical"></b-icon>
       </template>
       <template v-if="currentUser">
         <!-- Only show these if they belong to the logged in user -->
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-    .btn-link {
+    .post-menu-button {
         color: #CCD6DD;
     }
 </style>

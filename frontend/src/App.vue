@@ -1,18 +1,30 @@
 <template>
   <div id="app">
-      <Navbar />
-    <router-view />
+    <Navbar />
+    <b-container class="mt-5">
+      <b-row d-flex flex-direction-column>
+        <b-col cols="12" sm="1" md="1" lg="2">
+          <MainMenu v-if="this.$store.getters.user.auth" />
+        </b-col>
+          <router-view />
+        <b-col cols="12" sm="12" md="11" lg="4">
+          <div class="side-content">
+            <router-view class="sidebar-view" name="SidebarView" />
+          </div>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
 import Navbar from './components/shared/Navbar'
-// import MainMenu from './components/shared/MainMenu'
+import MainMenu from './components/shared/MainMenu'
 
 export default {
   components: {
-    Navbar
-    // MainMenu
+    Navbar,
+    MainMenu
   },
   data: () => {
 
@@ -30,22 +42,7 @@ export default {
     color: #fff;
   }
 
-  .main-nav {
-      background: #fff;
-
-      .mobile-menu-button {
-          color: #000;
-          background: #fff;
-          border: none;
-          font-size: 1.6rem;
-
-          @media screen and (min-width: 769px) {
-              display: none;
-          }
-      }
-  }
-
-  .container-tw {
+   .container-tw {
       border-bottom: 1px solid @twgray;
   }
 

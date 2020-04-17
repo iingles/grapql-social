@@ -39,7 +39,7 @@ export default {
 <style lang="less" scoped>
   .main-menu {
     position: fixed;
-
+    height: 100%;
     padding: 1rem 0;
     list-style-type: none;
     z-index: 1000;
@@ -63,7 +63,7 @@ export default {
         }
 
         @media screen and (max-width: 768px) {
-          display: none;
+
         }
     }
 
