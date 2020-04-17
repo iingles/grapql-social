@@ -1,6 +1,7 @@
 <template>
     <div>
         <h3>Today's Headlines</h3>
+        <p>Powered by <b-btn class="pt-0 pl-0 pr-0 pb-0 mt-0 ml-0 mr-0 mb-0 newsapi-link" variant="link" href="https://newsapi.org/">Newsapi</b-btn></p>
         <div class="card mb-2 pl-2 pr-2 pt-2 pb-2" v-for="article in news.articles" :key="article.id">
             <a :href="article.url">
                 <img :src="article.urlToImage">
@@ -37,6 +38,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
+.newsapi-link {
+  color: blue;
+}
 
 a {
     color: #000;

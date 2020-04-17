@@ -29,10 +29,9 @@
 
         <b-col cols="12" sm="12" md="5" lg="3" justify-self="end">
           <template v-if="loggedInUser === this.$route.params.id">
-              <b-button v-b-modal.editProfileModal pill variant="outline-primary" href="">Edit Profile</b-button>
-            <b-modal id="editProfileModal" title="Edit Profile">
-              <p class="my-4">Hello from modal!</p>
-            </b-modal>
+              <EditProfile
+              :user="user"
+              />
           </template>
           <template v-else>
                 <FollowToggle
@@ -47,10 +46,12 @@
 </template>
 
 <script>
+import EditProfile from '../../components/profile/profile-actions/EditProfile'
 import FollowToggle from '../../components/profile/profile-actions/FollowToggle'
 
 export default {
   components: {
+    EditProfile,
     FollowToggle
   },
   data: () => {
@@ -71,6 +72,7 @@ export default {
   },
   methods: {
     getUserInfo () {
+      // Fetch the user info for the profile page
       let userData
       const vm = this
 
