@@ -1,30 +1,36 @@
 <template>
     <b-card class="mb-1">
-        <b-row class="d-flex post-header">
-            <b-col cols="2">
-                <b-avatar size="4rem" :to="`/profile/${post.creator._id}`" :src="post.creator.photoSm" :text="post.creator.firstName[0]" href="#"></b-avatar>
-            </b-col>
-            <b-col cols="8" class="d-flex mt-0 mb-0 ">
-                <span class="user-name pb-0 mb-0">{{ `${post.creator.firstName} ${post.creator.lastName}` }}</span>
-                <span class="date-time pb-0 mb-0 ml-3">{{ post.createdAt }}</span>
-            </b-col>
-            <b-col cols="2">
-                <PostMenu
-                 :userId="userId"
-                 :token="token"
-                 :creatorId="post.creator._id"
-                 :postId="post._id"
-                 :content="post.content"
-                />
-            </b-col>
-        </b-row>
         <b-row>
-            <b-col cols="2" class="pr-0">
+            <b-col cols="2" class="pr-0 pl-1">
+                <b-row class="d-flex pr-0 pl-0">
+                    <b-col>
+                        <b-avatar size="4rem" :to="`/profile/${post.creator._id}`" :src="post.creator.photoSm" :text="post.creator.firstName[0]" href="#"></b-avatar>
+                    </b-col>
+                </b-row>
             </b-col>
-            <b-col cols="10">
-                <b-card-body class="pl-0 pt-0">
-                    {{post.content}}
-                </b-card-body>
+            <b-col cols="10" class="pl-0">
+                <b-row class="d-flex" no-gutters align-v="start">
+                    <b-col cols="10">
+                        <span class="user-name pb-0 mb-0">{{ `${post.creator.firstName} ${post.creator.lastName}` }}</span>
+                        <span class="date-time pb-0 mb-0 ml-3">{{ post.createdAt }}</span>
+                    </b-col>
+                    <b-col cols="2">
+                        <PostMenu
+                        :userId="userId"
+                        :token="token"
+                        :creatorId="post.creator._id"
+                        :postId="post._id"
+                        :content="post.content"
+                        />
+                    </b-col>
+                </b-row>
+                <b-row align-v="start">
+                    <b-col cols="10">
+                        <b-card-body class="pl-0 pt-0">
+                            {{post.content}}
+                        </b-card-body>
+                    </b-col>
+                </b-row>
             </b-col>
         </b-row>
         <b-card-footer class="d-flex pt-2 pb-1 justify-content-around">
