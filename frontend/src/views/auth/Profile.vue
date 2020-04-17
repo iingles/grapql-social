@@ -28,9 +28,12 @@
         </b-col>
 
         <b-col cols="12" sm="12" md="5" lg="3" justify-self="end">
-          <b-button pill variant="primary" href="">Edit Profile</b-button>
+          <b-button v-b-modal.editProfileModal pill variant="outline-primary" href="">Edit Profile</b-button>
         </b-col>
 
+        <b-modal id="editProfileModal" title="Edit Profile">
+          <p class="my-4">Hello from modal!</p>
+        </b-modal>
       </b-row>
     </b-container>
   </b-col>
