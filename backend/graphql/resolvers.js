@@ -120,6 +120,8 @@ export const bresolver = {
 
     updateFollows: async ({ id, followInput }, req) => {
 
+        // Error checking
+
         if (!req.isAuth) {
             const error = new Error('Not Authenticated')
             error.code = 401
@@ -131,6 +133,12 @@ export const bresolver = {
 
         if (!user) {
             const error = new Error('Unable to find user')
+            error.code = 404
+            throw error
+        }
+
+        if (!user2) {
+            const error = new Error('Unable to find user2')
             error.code = 404
             throw error
         }

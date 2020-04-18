@@ -50,11 +50,7 @@ export default {
   },
   data: () => {
     return {
-      userInput: {
-        firstName: '',
-        lastName: '',
-        bio: ''
-      }
+      userInput: {}
     }
   }
 }
