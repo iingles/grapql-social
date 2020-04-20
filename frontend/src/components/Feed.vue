@@ -3,14 +3,14 @@
         <template v-if="loading">
           Loading posts...
         </template>
-        <template v-elseif="feedStack.length > 0">
+        <template v-else-if="feedStack.length > 0">
           <div v-for="post in feedStack" :key="post._id">
-        <SinglePost
-          :post="post"
-          :token="token"
-          :userId="userId"
-          />
-        </div>
+            <SinglePost
+              :post="post"
+              :token="token"
+              :userId="userId"
+              />
+          </div>
         </template>
         <template v-else>
           <h4>You don't have anything in your feed.</h4>
