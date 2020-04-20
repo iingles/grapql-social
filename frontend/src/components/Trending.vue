@@ -1,6 +1,10 @@
 <template>
     <div>
-        <h3>Recent Media</h3>
-
+        <h3>Trending</h3>
     </div>
 </template>
+
+<script>
+export default {
+}
+</script>

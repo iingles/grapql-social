@@ -1,6 +1,9 @@
 <template>
     <section>
-        <template v-if="feedStack.length > 0">
+        <template v-if="loading">
+          Loading posts...
+        </template>
+        <template v-elseif="feedStack.length > 0">
           <div v-for="post in feedStack" :key="post._id">
         <SinglePost
           :post="post"
@@ -24,7 +27,8 @@ export default {
     return {
       token: localStorage.getItem('token'),
       userId: localStorage.getItem('userId'),
-      feedStack: []
+      feedStack: [],
+      loading: true
     }
   },
   components: {
@@ -91,6 +95,7 @@ export default {
             }
           })
         })
+        this.loading = false
         vm.feedStack = this.$store.getters.feed.feedStack
       })
       .catch(err => {
