@@ -4,5 +4,6 @@
     "private": true,
     "scripts": {
         "build-client": "npm i && npm run build --prefix frontend"
-    }
+    },
+    "dependencies": {}
 }
